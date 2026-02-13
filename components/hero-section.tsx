@@ -12,12 +12,13 @@ interface HeroSectionProps {
 
 const heroContent = {
   solutions: {
-    tagline: "Tres mentes, Tres enfoques, Un solo proposito.",
+    tagline: "Tres mentes,        Tres enfoques,      Un solo proposito.",
     subtitle:
       "Soluciones integrales para transformar tu negocio con vision estrategica y confianza.",
     color: "#1D1D1B",
     bgAccent: "#f5f5f5",
     image: "/images/logo-vertical-solutions-negro.png",
+    bgImage: "url('/images/main2.jpg')",
   },
   projects: {
     tagline: "Construimos el futuro con precision e ingenieria.",
@@ -138,12 +139,23 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-      {/* Background */}
+     {/* Background */}
       <AnimatePresence mode="wait">
         <motion.div
           key={`bg-${activeBrand}`}
           className="absolute inset-0"
-          style={{ backgroundColor: content.bgAccent }}
+          style={{ 
+            // Color base de seguridad
+            backgroundColor: content.bgAccent,
+            
+            // AQUI ESTÁ EL CAMBIO: Bajé de 0.85 a 0.60 en ambos rgba
+            backgroundImage: (content as any).bgImage 
+              ? `linear-gradient(rgba(255, 255, 255, 0.29), rgba(255, 255, 255, 0.29)), ${(content as any).bgImage}`
+              : undefined,
+              
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -306,7 +318,7 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
               </motion.div>
 
               {/* Animated Stats Row */}
-              <motion.div
+               <motion.div
                 className="mt-12 flex items-center gap-8 justify-center lg:justify-start"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
