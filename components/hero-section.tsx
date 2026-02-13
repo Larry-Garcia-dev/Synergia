@@ -1,0 +1,438 @@
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, ChevronDown } from "lucide-react";
+import { useEffect, useState } from "react";
+
+type BrandKey = "solutions" | "projects" | "taxlegal";
+
+interface HeroSectionProps {
+  activeBrand: BrandKey;
+}
+
+const heroContent = {
+  solutions: {
+    tagline: "Tres mentes, Tres enfoques, Un solo proposito.",
+    subtitle:
+      "Soluciones integrales para transformar tu negocio con vision estrategica y confianza.",
+    color: "#1D1D1B",
+    bgAccent: "#f5f5f5",
+    image: "/images/logo-vertical-solutions-negro.png",
+  },
+  projects: {
+    tagline: "Construimos el futuro con precision e ingenieria.",
+    subtitle:
+      "Gestion de proyectos de ingenieria con los mas altos estandares de calidad y eficiencia.",
+    color: "#00A8FF",
+    bgAccent: "#e8f7ff",
+    image: "/images/project-engineer.png",
+  },
+  taxlegal: {
+    tagline: "Tu seguridad legal, nuestra prioridad.",
+    subtitle:
+      "Asesoramiento fiscal y juridico de primera clase para proteger tus intereses.",
+    color: "#F9105E",
+    bgAccent: "#fff0f5",
+    image: "/images/task-main.png",
+  },
+};
+
+const letterVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.3 + i * 0.1,
+      duration: 0.5,
+      ease: [0.215, 0.61, 0.355, 1],
+    },
+  }),
+};
+
+function AnimatedCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const duration = 2000;
+    const increment = value / (duration / 16);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= value) {
+        setCount(value);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+    return () => clearInterval(timer);
+  }, [value]);
+
+  return (
+    <span>
+      {count}
+      {suffix}
+    </span>
+  );
+}
+
+const statsData = {
+  solutions: [
+    { value: 15, suffix: "+", label: "Anos de experiencia" },
+    { value: 200, suffix: "+", label: "Clientes satisfechos" },
+    { value: 50, suffix: "+", label: "Proyectos exitosos" },
+  ],
+  projects: [
+    { value: 120, suffix: "+", label: "Proyectos entregados" },
+    { value: 98, suffix: "%", label: "Satisfaccion" },
+    { value: 30, suffix: "+", label: "Ingenieros activos" },
+  ],
+  taxlegal: [
+    { value: 500, suffix: "+", label: "Casos resueltos" },
+    { value: 12, suffix: "+", label: "Anos de experiencia" },
+    { value: 100, suffix: "%", label: "Compromiso total" },
+  ],
+};
+
+const wordVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.3 + i * 0.1,
+      duration: 0.5,
+      ease: [0.215, 0.61, 0.355, 1],
+    },
+  }),
+};
+
+const charVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.02,
+      duration: 0.3,
+      ease: "easeOut",
+    },
+  }),
+};
+
+const floatingVariants = {
+  float: {
+    y: [-8, 8, -8],
+    transition: {
+      duration: 4,
+      repeat: Infinity,
+      ease: "easeInOut",
+    },
+  },
+};
+
+export default function HeroSection({ activeBrand }: HeroSectionProps) {
+  const content = heroContent[activeBrand];
+  const stats = statsData[activeBrand];
+
+  return (
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
+      {/* Background */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`bg-${activeBrand}`}
+          className="absolute inset-0"
+          style={{ backgroundColor: content.bgAccent }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        />
+      </AnimatePresence>
+
+      {/* Animated background particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={`particle-${activeBrand}-${i}`}
+            className="absolute rounded-full"
+            style={{
+              width: 4 + i * 3,
+              height: 4 + i * 3,
+              backgroundColor: content.color,
+              opacity: 0.08,
+              left: `${15 + i * 15}%`,
+              top: `${20 + (i % 3) * 25}%`,
+            }}
+            animate={{
+              y: [-20, 20, -20],
+              x: [-10, 10, -10],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{
+              duration: 3 + i * 0.8,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.5,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Decorative diagonal accent */}
+      <motion.div
+        key={`accent-${activeBrand}`}
+        className="absolute top-0 right-0 w-1/3 h-full opacity-10"
+        style={{
+          background: `linear-gradient(135deg, transparent 0%, ${content.color} 100%)`,
+        }}
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 0.08, x: 0 }}
+        transition={{ duration: 1 }}
+      />
+
+      {/* Grid pattern overlay */}
+      <motion.div
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `radial-gradient(${content.color} 1px, transparent 1px)`,
+          backgroundSize: "40px 40px",
+        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.02 }}
+        transition={{ duration: 1.5 }}
+      />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 w-full">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          {/* Text content */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`hero-text-${activeBrand}`}
+              className="flex-1 text-center lg:text-left"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -40 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              {/* Badge */}
+              <motion.div
+                className="inline-block mb-6 px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase"
+                style={{
+                  backgroundColor: `${content.color}15`,
+                  color: content.color,
+                  border: `1px solid ${content.color}25`,
+                }}
+                initial={{ opacity: 0, scale: 0.6, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5, type: "spring", bounce: 0.4 }}
+              >
+                SYN3RGIA{" "}
+                {activeBrand === "solutions"
+                  ? "Solutions & Consulting"
+                  : activeBrand === "projects"
+                    ? "Projects"
+                    : "Tax & Legal"}
+              </motion.div>
+
+              {/* Animated heading - letter by letter */}
+              <motion.h1
+                className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance"
+                style={{ color: "#1D1D1B" }}
+              >
+                {content.tagline.split("").map((char, i) => (
+                  <motion.span
+                    key={`${activeBrand}-${i}`}
+                    custom={i}
+                    variants={letterVariants}
+                    initial="hidden"
+                    animate="visible"
+                    style={{ display: "inline-block", whiteSpace: char === " " ? "pre" : "normal" }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </motion.h1>
+
+              <motion.p
+                className="mt-6 text-lg md:text-xl leading-relaxed max-w-xl"
+                style={{ color: "#959696" }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+              >
+                {content.subtitle}
+              </motion.p>
+
+              {/* CTA Buttons */}
+              <motion.div
+                className="mt-8 flex flex-col sm:flex-row gap-4 items-center lg:items-start"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.6 }}
+              >
+                <motion.a
+                  href="#about"
+                  className="flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-white shadow-lg cursor-pointer"
+                  style={{ backgroundColor: content.color }}
+                  whileHover={{ scale: 1.05, boxShadow: `0 10px 30px ${content.color}40` }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  Conocer mas
+                  <motion.span
+                    animate={{ x: [0, 4, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <ArrowRight size={16} />
+                  </motion.span>
+                </motion.a>
+                <motion.a
+                  href="#contacto"
+                  className="px-8 py-3.5 rounded-full text-sm font-semibold border-2 bg-transparent cursor-pointer"
+                  style={{
+                    borderColor: content.color,
+                    color: content.color,
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    backgroundColor: `${content.color}10`,
+                  }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  Contactanos
+                </motion.a>
+              </motion.div>
+
+              {/* Animated Stats Row */}
+              <motion.div
+                className="mt-12 flex items-center gap-8 justify-center lg:justify-start"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1, duration: 0.6 }}
+              >
+                {stats.map((stat, i) => (
+                  <motion.div
+                    key={stat.label}
+                    className="text-center lg:text-left"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.1 + i * 0.15 }}
+                  >
+                    <div
+                      className="text-2xl md:text-3xl font-bold"
+                      style={{ color: content.color }}
+                    >
+                      <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                    </div>
+                    <div className="text-xs mt-1" style={{ color: "#959696" }}>
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Image side */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`hero-img-${activeBrand}`}
+              className="flex-1 relative"
+              initial={{ opacity: 0, x: 80, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -60, scale: 0.95 }}
+              transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }}
+            >
+              <motion.div className="relative" variants={floatingVariants} animate="float">
+                {/* Glow background */}
+                <motion.div
+                  className="absolute -inset-6 rounded-2xl blur-3xl"
+                  style={{ backgroundColor: content.color, opacity: 0.12 }}
+                  animate={{
+                    opacity: [0.08, 0.15, 0.08],
+                    scale: [1, 1.03, 1],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                />
+
+                <img
+                  src={content.image || "/placeholder.svg"}
+                  alt={
+                    activeBrand === "solutions"
+                      ? "SYN3RGIA Solutions & Consulting Logo"
+                      : activeBrand === "projects"
+                        ? "Ingeniero en obra"
+                        : "Profesional de Tax & Legal"
+                  }
+                  className={`relative w-full max-w-lg mx-auto ${
+                    activeBrand === "solutions"
+                      ? "object-contain p-8"
+                      : "rounded-2xl object-cover shadow-2xl"
+                  }`}
+                  style={activeBrand === "solutions" ? {} : { aspectRatio: "4/5" }}
+                />
+
+                {/* Accent corner decoration - only for photo pages */}
+                {activeBrand !== "solutions" && (
+                  <>
+                    <motion.div
+                      className="absolute -bottom-4 -right-4 w-24 h-24 rounded-xl"
+                      style={{ backgroundColor: content.color }}
+                      initial={{ scale: 0, rotate: -45 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      transition={{ delay: 0.8, type: "spring", bounce: 0.4 }}
+                    />
+                    <motion.div
+                      className="absolute -top-3 -left-3 w-16 h-16 rounded-lg border-2"
+                      style={{ borderColor: content.color }}
+                      initial={{ scale: 0, rotate: 45 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      transition={{ delay: 1, type: "spring", bounce: 0.4 }}
+                    />
+                  </>
+                )}
+
+                {/* Floating badge on image - only for projects/taxlegal */}
+                {activeBrand !== "solutions" && (
+                  <motion.div
+                    className="absolute bottom-8 -left-6 bg-white rounded-xl p-4 shadow-xl"
+                    initial={{ opacity: 0, x: -20, scale: 0.8 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    transition={{ delay: 1.2, type: "spring", bounce: 0.3 }}
+                  >
+                    <div className="text-xs font-semibold" style={{ color: content.color }}>
+                      SYN3RGIA
+                    </div>
+                    <div className="text-lg font-bold" style={{ color: "#1D1D1B" }}>
+                      {activeBrand === "projects" ? "Precision" : "Seguridad"}
+                    </div>
+                  </motion.div>
+                )}
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5 }}
+        >
+          <span className="text-xs font-medium" style={{ color: "#959696" }}>
+            Descubre mas
+          </span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            <ChevronDown size={20} style={{ color: content.color }} />
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
