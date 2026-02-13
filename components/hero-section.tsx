@@ -12,7 +12,7 @@ interface HeroSectionProps {
 
 const heroContent = {
   solutions: {
-    tagline: "Tres mentes,        Tres enfoques,      Un solo proposito.",
+    tagline: "Tres mentes,           Tres enfoques,       Un solo proposito.",
     subtitle:
       "Soluciones integrales para transformar tu negocio con vision estrategica y confianza.",
     color: "#1D1D1B",
@@ -21,7 +21,7 @@ const heroContent = {
     bgImage: "url('/images/main2.jpg')",
   },
   projects: {
-    tagline: "Construimos el futuro con precision e ingenieria.",
+    tagline: " Construimos el   futuro con precision e ingenieria.",
     subtitle:
       "Gestion de proyectos de ingenieria con los mas altos estandares de calidad y eficiencia.",
     color: "#00A8FF",
@@ -139,20 +139,20 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-     {/* Background */}
+      {/* Background */}
       <AnimatePresence mode="wait">
         <motion.div
           key={`bg-${activeBrand}`}
           className="absolute inset-0"
-          style={{ 
+          style={{
             // Color base de seguridad
             backgroundColor: content.bgAccent,
-            
+
             // AQUI ESTÁ EL CAMBIO: Bajé de 0.85 a 0.60 en ambos rgba
-            backgroundImage: (content as any).bgImage 
+            backgroundImage: (content as any).bgImage
               ? `linear-gradient(rgba(255, 255, 255, 0.29), rgba(255, 255, 255, 0.29)), ${(content as any).bgImage}`
               : undefined,
-              
+
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -269,7 +269,7 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
 
               <motion.p
                 className="mt-6 text-lg md:text-xl leading-relaxed max-w-xl"
-                style={{ color: "#959696" }}
+                style={{ color: "#000000" }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
@@ -318,7 +318,7 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
               </motion.div>
 
               {/* Animated Stats Row */}
-               <motion.div
+              {/* <motion.div
                 className="mt-12 flex items-center gap-8 justify-center lg:justify-start"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -338,12 +338,12 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
                     >
                       <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                     </div>
-                    <div className="text-xs mt-1" style={{ color: "#959696" }}>
+                    <div className="text-xs mt-1" style={{ color: "#000000" }}>
                       {stat.label}
                     </div>
                   </motion.div>
                 ))}
-              </motion.div>
+              </motion.div> */}
             </motion.div>
           </AnimatePresence>
 
@@ -378,11 +378,10 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
                         ? "Ingeniero en obra"
                         : "Profesional de Tax & Legal"
                   }
-                  className={`relative w-full max-w-lg mx-auto ${
-                    activeBrand === "solutions"
+                  className={`relative w-full max-w-lg mx-auto ${activeBrand === "solutions"
                       ? "object-contain p-8"
                       : "rounded-2xl object-cover shadow-2xl"
-                  }`}
+                    }`}
                   style={activeBrand === "solutions" ? {} : { aspectRatio: "4/5" }}
                 />
 
@@ -434,9 +433,9 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5 }}
         >
-          <span className="text-xs font-medium" style={{ color: "#959696" }}>
+          {/* <span className="text-xs font-medium" style={{ color: "#959696" }}>
             Descubre mas
-          </span>
+          </span> */}
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}

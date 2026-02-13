@@ -35,31 +35,37 @@ const servicesContent = {
         icon: BarChart3,
         title: "Consultoria Estrategica",
         desc: "Analisis integral del negocio para identificar oportunidades de crecimiento y optimizacion de recursos.",
+        image: "/images/home1.jpg"
       },
       {
         icon: Calculator,
         title: "Planeacion Financiera",
         desc: "Estructuracion financiera y planeacion fiscal para maximizar la rentabilidad de tu empresa.",
+        image: "/images/home2.webp"
       },
       {
         icon: TrendingUp,
         title: "Crecimiento Empresarial",
         desc: "Estrategias de expansion y desarrollo de mercado adaptadas a tu industria y objetivos.",
+        image: "/images/home3.webp"
       },
       {
         icon: Users,
         title: "Capital Humano",
         desc: "Gestion del talento, politicas laborales y desarrollo organizacional para equipos de alto rendimiento.",
+        image: "/images/home4.webp"
       },
       {
         icon: Lightbulb,
         title: "Innovacion",
         desc: "Transformacion digital y optimizacion de procesos para mantener competitividad en el mercado.",
+        image: "/images/main6.jpg"
       },
       {
         icon: ClipboardCheck,
         title: "Auditoria",
         desc: "Revision integral de procesos, finanzas y cumplimiento normativo para tu tranquilidad.",
+        image: "/images/home5.jpg"
       },
     ],
   },
@@ -254,10 +260,15 @@ export default function ServicesSection({ activeBrand }: ServicesSectionProps) {
               {content.services.map((service, i) => {
                 const Icon = service.icon;
                 const isHovered = hoveredIndex === i;
+
+                // Verificamos si existe una imagen (solo pasará en 'solutions')
+                const hasImage = (service as any).image;
+
                 return (
                   <motion.div
                     key={service.title}
-                    className="group relative p-6 rounded-2xl bg-white border overflow-hidden cursor-pointer"
+                    // CAMBIO 1: Quitamos 'p-6' y agregamos 'flex flex-col' para empujar la imagen abajo
+                    className="group relative rounded-2xl bg-white border overflow-hidden cursor-pointer flex flex-col"
                     style={{ borderColor: isHovered ? content.color : `${content.color}15` }}
                     custom={i}
                     initial="hidden"
@@ -267,25 +278,26 @@ export default function ServicesSection({ activeBrand }: ServicesSectionProps) {
                     onHoverStart={() => setHoveredIndex(i)}
                     onHoverEnd={() => setHoveredIndex(null)}
                   >
-                    {/* Top accent line - animates on hover */}
+                    {/* Top accent line */}
                     <motion.div
-                      className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
+                      className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl z-20"
                       style={{ backgroundColor: content.color }}
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: isHovered ? 1 : 0 }}
                       transition={{ duration: 0.3 }}
                     />
 
-                    {/* Background glow on hover */}
+                    {/* Background glow */}
                     <motion.div
-                      className="absolute inset-0 rounded-2xl"
+                      className="absolute inset-0 rounded-2xl pointer-events-none"
                       style={{ backgroundColor: content.color }}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: isHovered ? 0.03 : 0 }}
                       transition={{ duration: 0.3 }}
                     />
 
-                    <div className="relative z-10">
+                    {/* CAMBIO 2: Envolvemos el texto en un div con 'p-6' y 'flex-1' para que ocupe el espacio disponible */}
+                    <div className="relative z-10 p-6 flex-1 flex flex-col">
                       <motion.div
                         className="w-14 h-14 rounded-xl flex items-center justify-center mb-5"
                         style={{ backgroundColor: `${content.color}10` }}
@@ -295,38 +307,43 @@ export default function ServicesSection({ activeBrand }: ServicesSectionProps) {
                         }}
                         transition={{ duration: 0.4 }}
                       >
-                        <Icon
-                          size={26}
-                          style={{ color: content.color }}
-                        />
+                        <Icon size={26} style={{ color: content.color }} />
                       </motion.div>
 
-                      <h3
-                        className="text-lg font-semibold mb-2"
-                        style={{ color: "#1D1D1B" }}
-                      >
+                      <h3 className="text-lg font-semibold mb-2" style={{ color: "#1D1D1B" }}>
                         {service.title}
                       </h3>
-                      <p
-                        className="text-sm leading-relaxed mb-4"
-                        style={{ color: "#777" }}
-                      >
+                      <p className="text-sm leading-relaxed mb-4 text-gray-600">
                         {service.desc}
                       </p>
 
-                      {/* Learn more link - appears on hover */}
+                      {/* Link de contacto al final del texto */}
                       <motion.a
                         href="#contacto"
-                        className="flex items-center gap-1 text-xs font-semibold cursor-pointer"
+                        className="flex items-center gap-1 text-xs font-semibold cursor-pointer mt-auto" // mt-auto asegura que el link quede abajo del texto si sobra espacio
                         style={{ color: content.color }}
                         initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -10 }}
+                        animate={{ opacity: 1, x: 0 }} // Cambié a siempre visible o usa tu lógica hover
                         transition={{ duration: 0.3 }}
                       >
                         Contactanos
                         <ArrowRight size={12} />
                       </motion.a>
                     </div>
+
+                    {/* CAMBIO 3: Renderizar la imagen abajo si existe */}
+                    {hasImage && (
+                      <div className="relative w-full h-48 overflow-hidden mt-auto">
+                        {/* Capa oscura suave encima para que se integre mejor (opcional) */}
+                        <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-300" />
+
+                        <img
+                          src={hasImage}
+                          alt={service.title}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    )}
                   </motion.div>
                 );
               })}
