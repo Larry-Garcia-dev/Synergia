@@ -41,7 +41,7 @@ const servicesContent = {
         icon: Calculator,
         title: "Planeacion Financiera",
         desc: "Estructuracion financiera y planeacion fiscal para maximizar la rentabilidad de tu empresa.",
-        image: "/images/home2.webp"
+        image: "/images/home2.png"
       },
       {
         icon: TrendingUp,
@@ -71,38 +71,44 @@ const servicesContent = {
   },
   projects: {
     title: "Servicios de Ingenieria",
-    subtitle: "Gestion integral de proyectos con precision y excelencia tecnica.",
+    subtitle: "Gestion integral de proyectos con precisión y excelencia tecnica.",
     color: "#00A8FF",
     services: [
       {
         icon: Building2,
         title: "Gestion de Proyectos",
         desc: "Administracion completa de proyectos de construccion e ingenieria civil desde la planeacion hasta la entrega.",
+        image: "/images/pj6.jpeg"
       },
       {
         icon: HardHat,
         title: "Supervision de Obra",
         desc: "Control de calidad y seguimiento tecnico en cada etapa del proceso constructivo.",
+        image: "/images/pj5.jpeg"
       },
       {
         icon: Ruler,
         title: "Diseno e Ingenieria",
         desc: "Soluciones de diseno estructural, arquitectonico e instalaciones especiales.",
+        image: "/images/pj4.jpeg"
       },
       {
         icon: ClipboardCheck,
         title: "Control de Costos",
         desc: "Presupuestos detallados, control de gastos y optimizacion de recursos para cada proyecto.",
+        image: "/images/pj3.jpeg"
       },
       {
         icon: ShieldCheck,
         title: "Seguridad Industrial",
         desc: "Protocolos de seguridad y normativas para garantizar la integridad de tu equipo de trabajo.",
+        image: "/images/pj2.jpeg"
       },
       {
         icon: TrendingUp,
         title: "Consultoria Tecnica",
         desc: "Asesoria especializada para resolver problemas tecnicos y optimizar procesos constructivos.",
+        image: "/images/pj1.jpeg"
       },
     ],
   },
@@ -115,31 +121,37 @@ const servicesContent = {
         icon: FileText,
         title: "Asesoramiento Fiscal",
         desc: "Planeacion tributaria estrategica para personas fisicas y morales, maximizando beneficios fiscales.",
+        image: "/images/t6.jpeg"
       },
       {
         icon: Gavel,
         title: "Litigio y Defensa",
         desc: "Representacion legal en procedimientos administrativos, fiscales y judiciales.",
+        image: "/images/t3.jpeg"
       },
       {
         icon: ShieldCheck,
         title: "Compliance",
         desc: "Programas de cumplimiento normativo y prevencion de riesgos legales para tu empresa.",
+        image: "/images/t4.jpeg"
       },
       {
         icon: Scale,
         title: "Derecho Corporativo",
         desc: "Constitucion de sociedades, contratos mercantiles y operaciones corporativas.",
+        image: "/images/t5.jpeg"
       },
       {
         icon: Users,
         title: "Derecho Laboral",
         desc: "Asesoria en relaciones laborales, contratos de trabajo y procedimientos ante autoridades laborales.",
+        image: "/images/t2.jpeg"
       },
       {
         icon: Calculator,
         title: "Contabilidad",
         desc: "Servicios contables integrales, dictamenes fiscales y reportes financieros.",
+        image: "/images/t1.jpeg"
       },
     ],
   },

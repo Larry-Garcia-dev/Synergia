@@ -21,7 +21,7 @@ const heroContent = {
     bgImage: "url('/images/main2.jpg')",
   },
   projects: {
-    tagline: " Construimos el   futuro con precision e ingenieria.",
+    tagline: " Construimos el   futuro con precisión e ingenieria.",
     subtitle:
       "Gestion de proyectos de ingenieria con los mas altos estandares de calidad y eficiencia.",
     color: "#00A8FF",
@@ -150,7 +150,7 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
 
             // AQUI ESTÁ EL CAMBIO: Bajé de 0.85 a 0.60 en ambos rgba
             backgroundImage: (content as any).bgImage
-              ? `linear-gradient(rgba(255, 255, 255, 0.29), rgba(255, 255, 255, 0.29)), ${(content as any).bgImage}`
+              ? `linear-gradient(rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.47)), ${(content as any).bgImage}`
               : undefined,
 
             backgroundSize: "cover",
@@ -417,7 +417,7 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
                       SYN3RGIA
                     </div>
                     <div className="text-lg font-bold" style={{ color: "#1D1D1B" }}>
-                      {activeBrand === "projects" ? "Precision" : "Seguridad"}
+                      {activeBrand === "projects" ? "precisión " : "Seguridad"}
                     </div>
                   </motion.div>
                 )}
