@@ -28,7 +28,7 @@ export default function Page() {
         >
           <HeroSection activeBrand={activeBrand} />
           <AboutSection activeBrand={activeBrand} />
-          <ServicesSection activeBrand={activeBrand} />
+          <ServicesSection activeBrand={activeBrand} onBrandChange={setActiveBrand} />
           <ContactSection activeBrand={activeBrand} />
         </motion.div>
       </AnimatePresence>
