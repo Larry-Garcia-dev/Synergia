@@ -12,7 +12,7 @@ interface HeroSectionProps {
 
 const heroContent = {
   solutions: {
-    tagline: "Tres mentes,           Tres enfoques,       Un solo proposito.",
+    tagline: "Tres mentes, Tres enfoques, Un solo proposito.",
     subtitle:
       "Soluciones integrales para transformar tu negocio con vision estrategica y confianza.",
     color: "#1D1D1B",
@@ -249,20 +249,24 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
               {/* Animated heading - word by word */}
               <motion.h1
                 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance"
-                style={{ color: "#1D1D1B", wordBreak: "keep-all", overflowWrap: "normal" }}
+                style={{ color: "#1D1D1B" }}
               >
-                {content.tagline.split("").map((char, i) => (
-                  <motion.span
-                    key={`${activeBrand}-${i}`}
-                    custom={i}
-                    variants={letterVariants}
-                    initial="hidden"
-                    animate="visible"
-                    style={{ display: "inline-block", whiteSpace: char === " " ? "pre" : "normal" }}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
+                {content.tagline
+                  .split(/\s+/)
+                  .filter(Boolean)
+                  .map((word, i, arr) => (
+                    <motion.span
+                      key={`${activeBrand}-word-${i}`}
+                      custom={i}
+                      variants={wordVariants}
+                      initial="hidden"
+                      animate="visible"
+                      style={{ display: "inline-block", whiteSpace: "nowrap" }}
+                    >
+                      {word}
+                      {i < arr.length - 1 ? "\u00A0" : ""}
+                    </motion.span>
+                  ))}
               </motion.h1>
 
               <motion.p
