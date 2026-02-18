@@ -21,12 +21,13 @@ const heroContent = {
     bgImage: "url('/images/main2.jpg')",
   },
   projects: {
-    tagline: " Construimos el   futuro con precisión e ingenieria.",
+    tagline: "Construimos el futuro con precision e ingenieria.",
     subtitle:
       "Gestion de proyectos de ingenieria con los mas altos estandares de calidad y eficiencia.",
     color: "#00A8FF",
     bgAccent: "#e8f7ff",
-    image: "/images/project-engineer.png",
+    image: "/images/logo-vertical-projects.png",
+    bgImage: "url('/images/hero-bg-projects.jpg')",
   },
   taxlegal: {
     tagline: "Tu seguridad legal, nuestra prioridad.",
@@ -34,7 +35,8 @@ const heroContent = {
       "Asesoramiento fiscal y juridico de primera clase para proteger tus intereses.",
     color: "#F9105E",
     bgAccent: "#fff0f5",
-    image: "/images/task-main.png",
+    image: "/images/logo-vertical-taxlegal.png",
+    bgImage: "url('/images/hero-bg-taxlegal.jpg')",
   },
 };
 
@@ -145,14 +147,10 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
           key={`bg-${activeBrand}`}
           className="absolute inset-0"
           style={{
-            // Color base de seguridad
             backgroundColor: content.bgAccent,
-
-            // AQUI ESTÁ EL CAMBIO: Bajé de 0.85 a 0.60 en ambos rgba
-            backgroundImage: (content as any).bgImage
-              ? `linear-gradient(rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.47)), ${(content as any).bgImage}`
+            backgroundImage: content.bgImage
+              ? `linear-gradient(rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.47)), ${content.bgImage}`
               : undefined,
-
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -248,10 +246,10 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
                     : "Tax & Legal"}
               </motion.div>
 
-              {/* Animated heading - letter by letter */}
+              {/* Animated heading - word by word */}
               <motion.h1
                 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance"
-                style={{ color: "#1D1D1B" }}
+                style={{ color: "#1D1D1B", wordBreak: "keep-all", overflowWrap: "normal" }}
               >
                 {content.tagline.split("").map((char, i) => (
                   <motion.span
@@ -268,8 +266,8 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
               </motion.h1>
 
               <motion.p
-                className="mt-6 text-lg md:text-xl leading-relaxed max-w-xl"
-                style={{ color: "#000000" }}
+                className="mt-6 text-lg md:text-xl leading-relaxed max-w-xl text-pretty"
+                style={{ color: "#000000", wordBreak: "keep-all", overflowWrap: "normal" }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
@@ -375,52 +373,11 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
                     activeBrand === "solutions"
                       ? "SYN3RGIA Solutions & Consulting Logo"
                       : activeBrand === "projects"
-                        ? "Ingeniero en obra"
-                        : "Profesional de Tax & Legal"
+                        ? "SYN3RGIA Projects Logo"
+                        : "SYN3RGIA Tax & Legal Logo"
                   }
-                  className={`relative w-full max-w-lg mx-auto ${activeBrand === "solutions"
-                      ? "object-contain p-8"
-                      : "rounded-2xl object-cover shadow-2xl"
-                    }`}
-                  style={activeBrand === "solutions" ? {} : { aspectRatio: "4/5" }}
+                  className="relative w-full max-w-sm md:max-w-md mx-auto object-contain drop-shadow-2xl"
                 />
-
-                {/* Accent corner decoration - only for photo pages */}
-                {activeBrand !== "solutions" && (
-                  <>
-                    <motion.div
-                      className="absolute -bottom-4 -right-4 w-24 h-24 rounded-xl"
-                      style={{ backgroundColor: content.color }}
-                      initial={{ scale: 0, rotate: -45 }}
-                      animate={{ scale: 1, rotate: 0 }}
-                      transition={{ delay: 0.8, type: "spring", bounce: 0.4 }}
-                    />
-                    <motion.div
-                      className="absolute -top-3 -left-3 w-16 h-16 rounded-lg border-2"
-                      style={{ borderColor: content.color }}
-                      initial={{ scale: 0, rotate: 45 }}
-                      animate={{ scale: 1, rotate: 0 }}
-                      transition={{ delay: 1, type: "spring", bounce: 0.4 }}
-                    />
-                  </>
-                )}
-
-                {/* Floating badge on image - only for projects/taxlegal */}
-                {activeBrand !== "solutions" && (
-                  <motion.div
-                    className="absolute bottom-8 -left-6 bg-white rounded-xl p-4 shadow-xl"
-                    initial={{ opacity: 0, x: -20, scale: 0.8 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    transition={{ delay: 1.2, type: "spring", bounce: 0.3 }}
-                  >
-                    <div className="text-xs font-semibold" style={{ color: content.color }}>
-                      SYN3RGIA
-                    </div>
-                    <div className="text-lg font-bold" style={{ color: "#1D1D1B" }}>
-                      {activeBrand === "projects" ? "precisión " : "Seguridad"}
-                    </div>
-                  </motion.div>
-                )}
               </motion.div>
             </motion.div>
           </AnimatePresence>
