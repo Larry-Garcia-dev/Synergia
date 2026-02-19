@@ -17,15 +17,15 @@ const brandConfig = {
     color: "#1D1D1B",
     logo: "/images/logocompleto-horizontal-solutions-20-26-20consulting-color.png",
   },
-  projects: {
-    label: "Projects",
-    color: "#00A8FF",
-    logo: "/images/logocompleto-horizontal-projects-color.png",
-  },
   taxlegal: {
     label: "Tax & Legal",
     color: "#F9105E",
     logo: "/images/logocompleto-horizontal-tax-20-26-20legal-color.png",
+  },
+  projects: {
+    label: "Projects",
+    color: "#00A8FF",
+    logo: "/images/logocompleto-horizontal-projects-color.png",
   },
 };
 
