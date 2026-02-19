@@ -2,7 +2,6 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import { useEffect, useState } from "react";
 
 type BrandKey = "solutions" | "projects" | "taxlegal";
 
@@ -12,89 +11,35 @@ interface HeroSectionProps {
 
 const heroContent = {
   solutions: {
-    tagline: "Tres mentes,           Tres enfoques,       Un solo proposito.",
+    tagline: "Tres mentes, Tres enfoques, Un solo proposito.",
     subtitle:
-      "Soluciones integrales para transformar tu negocio con vision estrategica y confianza.",
+      "Somos una empresa familiar con valores profundos. Nos esforzamos por entender la cultura y la vision de nuestros clientes, convirtiéndonos en sus asesores integrales.",
     color: "#1D1D1B",
     bgAccent: "#f5f5f5",
     image: "/images/logo-vertical-solutions-negro.png",
     bgImage: "url('/images/main2.jpg')",
   },
   projects: {
-    tagline: " Construimos el   futuro con precisión e ingenieria.",
+    tagline: "Integramos talento para construir tus proyectos.",
     subtitle:
-      "Gestion de proyectos de ingenieria con los mas altos estandares de calidad y eficiencia.",
+      "Actuamos como integradores de los diferentes actores que deben reunirse para la construccion de un proyecto, con servicios especializados de consultoria en arquitectura e ingenieria.",
     color: "#00A8FF",
     bgAccent: "#e8f7ff",
-    image: "/images/project-engineer.png",
+    image: "/images/logo-vertical-projects.png",
+    bgImage: "url('/images/hero-bg-projects.jpg')",
   },
   taxlegal: {
-    tagline: "Tu seguridad legal, nuestra prioridad.",
+    tagline: "Estrategia tributaria y proteccion juridica integral.",
     subtitle:
-      "Asesoramiento fiscal y juridico de primera clase para proteger tus intereses.",
+      "Nuestra practica se centra en asesoria de derecho tributario internacional, consultoria para empresas locales, acompanamiento en procesos de fiscalizacion y asesoria patrimonial para familias empresarias.",
     color: "#F9105E",
     bgAccent: "#fff0f5",
-    image: "/images/task-main.png",
+    image: "/images/logo-vertical-taxlegal.png",
+    bgImage: "url('/images/hero-bg-taxlegal.jpg')",
   },
 };
 
-const letterVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.3 + i * 0.1,
-      duration: 0.5,
-      ease: [0.215, 0.61, 0.355, 1],
-    },
-  }),
-};
 
-function AnimatedCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let start = 0;
-    const duration = 2000;
-    const increment = value / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= value) {
-        setCount(value);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [value]);
-
-  return (
-    <span>
-      {count}
-      {suffix}
-    </span>
-  );
-}
-
-const statsData = {
-  solutions: [
-    { value: 15, suffix: "+", label: "Anos de experiencia" },
-    { value: 200, suffix: "+", label: "Clientes satisfechos" },
-    { value: 50, suffix: "+", label: "Proyectos exitosos" },
-  ],
-  projects: [
-    { value: 120, suffix: "+", label: "Proyectos entregados" },
-    { value: 98, suffix: "%", label: "Satisfaccion" },
-    { value: 30, suffix: "+", label: "Ingenieros activos" },
-  ],
-  taxlegal: [
-    { value: 500, suffix: "+", label: "Casos resueltos" },
-    { value: 12, suffix: "+", label: "Anos de experiencia" },
-    { value: 100, suffix: "%", label: "Compromiso total" },
-  ],
-};
 
 const wordVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -109,18 +54,7 @@ const wordVariants = {
   }),
 };
 
-const charVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.02,
-      duration: 0.3,
-      ease: "easeOut",
-    },
-  }),
-};
+
 
 const floatingVariants = {
   float: {
@@ -135,7 +69,6 @@ const floatingVariants = {
 
 export default function HeroSection({ activeBrand }: HeroSectionProps) {
   const content = heroContent[activeBrand];
-  const stats = statsData[activeBrand];
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
@@ -145,14 +78,10 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
           key={`bg-${activeBrand}`}
           className="absolute inset-0"
           style={{
-            // Color base de seguridad
             backgroundColor: content.bgAccent,
-
-            // AQUI ESTÁ EL CAMBIO: Bajé de 0.85 a 0.60 en ambos rgba
-            backgroundImage: (content as any).bgImage
-              ? `linear-gradient(rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.47)), ${(content as any).bgImage}`
+            backgroundImage: content.bgImage
+              ? `linear-gradient(rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.47)), ${content.bgImage}`
               : undefined,
-
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -219,13 +148,11 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 w-full">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           {/* Text content */}
-          <AnimatePresence mode="wait">
             <motion.div
               key={`hero-text-${activeBrand}`}
               className="flex-1 text-center lg:text-left"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -40 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               {/* Badge */}
@@ -248,28 +175,32 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
                     : "Tax & Legal"}
               </motion.div>
 
-              {/* Animated heading - letter by letter */}
+              {/* Animated heading - word by word */}
               <motion.h1
                 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance"
                 style={{ color: "#1D1D1B" }}
               >
-                {content.tagline.split("").map((char, i) => (
-                  <motion.span
-                    key={`${activeBrand}-${i}`}
-                    custom={i}
-                    variants={letterVariants}
-                    initial="hidden"
-                    animate="visible"
-                    style={{ display: "inline-block", whiteSpace: char === " " ? "pre" : "normal" }}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
+                {content.tagline
+                  .split(/\s+/)
+                  .filter(Boolean)
+                  .map((word, i, arr) => (
+                    <motion.span
+                      key={`${activeBrand}-word-${i}`}
+                      custom={i}
+                      variants={wordVariants}
+                      initial="hidden"
+                      animate="visible"
+                      style={{ display: "inline-block", whiteSpace: "nowrap" }}
+                    >
+                      {word}
+                      {i < arr.length - 1 ? "\u00A0" : ""}
+                    </motion.span>
+                  ))}
               </motion.h1>
 
               <motion.p
-                className="mt-6 text-lg md:text-xl leading-relaxed max-w-xl"
-                style={{ color: "#000000" }}
+                className="mt-6 text-lg md:text-xl leading-relaxed max-w-xl text-pretty"
+                style={{ color: "#000000", wordBreak: "keep-all", overflowWrap: "normal" }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
@@ -317,44 +248,14 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
                 </motion.a>
               </motion.div>
 
-              {/* Animated Stats Row */}
-              {/* <motion.div
-                className="mt-12 flex items-center gap-8 justify-center lg:justify-start"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1, duration: 0.6 }}
-              >
-                {stats.map((stat, i) => (
-                  <motion.div
-                    key={stat.label}
-                    className="text-center lg:text-left"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.1 + i * 0.15 }}
-                  >
-                    <div
-                      className="text-2xl md:text-3xl font-bold"
-                      style={{ color: content.color }}
-                    >
-                      <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                    </div>
-                    <div className="text-xs mt-1" style={{ color: "#000000" }}>
-                      {stat.label}
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div> */}
             </motion.div>
-          </AnimatePresence>
 
           {/* Image side */}
-          <AnimatePresence mode="wait">
             <motion.div
               key={`hero-img-${activeBrand}`}
               className="flex-1 relative"
               initial={{ opacity: 0, x: 80, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: -60, scale: 0.95 }}
               transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }}
             >
               <motion.div className="relative" variants={floatingVariants} animate="float">
@@ -375,55 +276,13 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
                     activeBrand === "solutions"
                       ? "SYN3RGIA Solutions & Consulting Logo"
                       : activeBrand === "projects"
-                        ? "Ingeniero en obra"
-                        : "Profesional de Tax & Legal"
+                        ? "SYN3RGIA Projects Logo"
+                        : "SYN3RGIA Tax & Legal Logo"
                   }
-                  className={`relative w-full max-w-lg mx-auto ${activeBrand === "solutions"
-                      ? "object-contain p-8"
-                      : "rounded-2xl object-cover shadow-2xl"
-                    }`}
-                  style={activeBrand === "solutions" ? {} : { aspectRatio: "4/5" }}
+                  className="relative w-full max-w-sm md:max-w-md mx-auto object-contain drop-shadow-2xl"
                 />
-
-                {/* Accent corner decoration - only for photo pages */}
-                {activeBrand !== "solutions" && (
-                  <>
-                    <motion.div
-                      className="absolute -bottom-4 -right-4 w-24 h-24 rounded-xl"
-                      style={{ backgroundColor: content.color }}
-                      initial={{ scale: 0, rotate: -45 }}
-                      animate={{ scale: 1, rotate: 0 }}
-                      transition={{ delay: 0.8, type: "spring", bounce: 0.4 }}
-                    />
-                    <motion.div
-                      className="absolute -top-3 -left-3 w-16 h-16 rounded-lg border-2"
-                      style={{ borderColor: content.color }}
-                      initial={{ scale: 0, rotate: 45 }}
-                      animate={{ scale: 1, rotate: 0 }}
-                      transition={{ delay: 1, type: "spring", bounce: 0.4 }}
-                    />
-                  </>
-                )}
-
-                {/* Floating badge on image - only for projects/taxlegal */}
-                {activeBrand !== "solutions" && (
-                  <motion.div
-                    className="absolute bottom-8 -left-6 bg-white rounded-xl p-4 shadow-xl"
-                    initial={{ opacity: 0, x: -20, scale: 0.8 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    transition={{ delay: 1.2, type: "spring", bounce: 0.3 }}
-                  >
-                    <div className="text-xs font-semibold" style={{ color: content.color }}>
-                      SYN3RGIA
-                    </div>
-                    <div className="text-lg font-bold" style={{ color: "#1D1D1B" }}>
-                      {activeBrand === "projects" ? "precisión " : "Seguridad"}
-                    </div>
-                  </motion.div>
-                )}
               </motion.div>
             </motion.div>
-          </AnimatePresence>
         </div>
 
         {/* Scroll indicator */}
