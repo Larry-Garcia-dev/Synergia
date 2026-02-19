@@ -2,7 +2,6 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import { useEffect, useState } from "react";
 
 type BrandKey = "solutions" | "projects" | "taxlegal";
 
@@ -40,63 +39,7 @@ const heroContent = {
   },
 };
 
-const letterVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.3 + i * 0.1,
-      duration: 0.5,
-      ease: [0.215, 0.61, 0.355, 1],
-    },
-  }),
-};
 
-function AnimatedCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let start = 0;
-    const duration = 2000;
-    const increment = value / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= value) {
-        setCount(value);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [value]);
-
-  return (
-    <span>
-      {count}
-      {suffix}
-    </span>
-  );
-}
-
-const statsData = {
-  solutions: [
-    { value: 15, suffix: "+", label: "Anos de experiencia" },
-    { value: 200, suffix: "+", label: "Clientes satisfechos" },
-    { value: 50, suffix: "+", label: "Proyectos exitosos" },
-  ],
-  projects: [
-    { value: 120, suffix: "+", label: "Proyectos entregados" },
-    { value: 98, suffix: "%", label: "Satisfaccion" },
-    { value: 30, suffix: "+", label: "Ingenieros activos" },
-  ],
-  taxlegal: [
-    { value: 500, suffix: "+", label: "Casos resueltos" },
-    { value: 12, suffix: "+", label: "Anos de experiencia" },
-    { value: 100, suffix: "%", label: "Compromiso total" },
-  ],
-};
 
 const wordVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -111,18 +54,7 @@ const wordVariants = {
   }),
 };
 
-const charVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.02,
-      duration: 0.3,
-      ease: "easeOut",
-    },
-  }),
-};
+
 
 const floatingVariants = {
   float: {
@@ -137,7 +69,6 @@ const floatingVariants = {
 
 export default function HeroSection({ activeBrand }: HeroSectionProps) {
   const content = heroContent[activeBrand];
-  const stats = statsData[activeBrand];
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
@@ -217,13 +148,11 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 w-full">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           {/* Text content */}
-          <AnimatePresence mode="wait">
             <motion.div
               key={`hero-text-${activeBrand}`}
               className="flex-1 text-center lg:text-left"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -40 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               {/* Badge */}
@@ -319,44 +248,14 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
                 </motion.a>
               </motion.div>
 
-              {/* Animated Stats Row */}
-              {/* <motion.div
-                className="mt-12 flex items-center gap-8 justify-center lg:justify-start"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1, duration: 0.6 }}
-              >
-                {stats.map((stat, i) => (
-                  <motion.div
-                    key={stat.label}
-                    className="text-center lg:text-left"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.1 + i * 0.15 }}
-                  >
-                    <div
-                      className="text-2xl md:text-3xl font-bold"
-                      style={{ color: content.color }}
-                    >
-                      <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                    </div>
-                    <div className="text-xs mt-1" style={{ color: "#000000" }}>
-                      {stat.label}
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div> */}
             </motion.div>
-          </AnimatePresence>
 
           {/* Image side */}
-          <AnimatePresence mode="wait">
             <motion.div
               key={`hero-img-${activeBrand}`}
               className="flex-1 relative"
               initial={{ opacity: 0, x: 80, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: -60, scale: 0.95 }}
               transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }}
             >
               <motion.div className="relative" variants={floatingVariants} animate="float">
@@ -384,7 +283,6 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
                 />
               </motion.div>
             </motion.div>
-          </AnimatePresence>
         </div>
 
         {/* Scroll indicator */}
