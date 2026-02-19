@@ -3,18 +3,14 @@
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import {
-  BarChart3,
   Calculator,
   ClipboardCheck,
   Building2,
-  HardHat,
   Ruler,
   FileText,
   Gavel,
-  ShieldCheck,
   TrendingUp,
   Users,
-  Lightbulb,
   Scale,
   ArrowRight,
 } from "lucide-react";
@@ -32,7 +28,7 @@ const homeCards = [
     brand: "taxlegal" as BrandKey,
     title: "Tax & Legal",
     description:
-      "Proteccion juridica y optimizacion fiscal a tu medida. Asesoria integral en materia tributaria, corporativa y laboral.",
+      "Asesoria en derecho tributario internacional, consultoria para empresas locales, acompanamiento en fiscalizacion y planeacion patrimonial para familias empresarias.",
     logo: "/images/logo-vertical-taxlegal.png",
     color: "#F9105E",
     buttonText: "Conocer mas",
@@ -41,98 +37,82 @@ const homeCards = [
     brand: "projects" as BrandKey,
     title: "Projects",
     description:
-      "Gestion integral de proyectos de ingenieria con precision y excelencia tecnica, desde la planeacion hasta la entrega.",
+      "Servicios especializados de consultoria en arquitectura e ingenieria, desde estudios urbanisticos y presupuestos hasta diseno arquitectonico y control de obra.",
     logo: "/images/logo-vertical-projects.png",
     color: "#00A8FF",
     buttonText: "Conocer mas",
   },
 ];
 
-/* ── Projects & Tax‑Legal views: original 6‑card grids ── */
+/* ── Projects & Tax‑Legal views: service grids based on real practice areas ── */
 const servicesContent = {
   projects: {
-    title: "Servicios de Ingenieria",
-    subtitle: "Gestion integral de proyectos con precision y excelencia tecnica.",
+    title: "Consultoria en Arquitectura e Ingenieria",
+    subtitle:
+      "Servicios especializados como integradores de los diferentes actores que deben reunirse para la construccion de un proyecto.",
     color: "#00A8FF",
     services: [
       {
         icon: Building2,
-        title: "Gestion de Proyectos",
-        desc: "Administracion completa de proyectos de construccion e ingenieria civil desde la planeacion hasta la entrega.",
+        title: "Programas Urbanisticos",
+        desc: "Estudios de programas urbanisticos para el desarrollo integral de proyectos de construccion e infraestructura.",
         image: "/images/pj6.jpeg",
       },
       {
-        icon: HardHat,
-        title: "Supervision de Obra",
-        desc: "Control de calidad y seguimiento tecnico en cada etapa del proceso constructivo.",
+        icon: Calculator,
+        title: "Presupuestos y Control de Obra",
+        desc: "Elaboracion de analisis de precios unitarios, presupuestos, programacion y control de obra para cada etapa del proyecto.",
         image: "/images/pj5.jpeg",
       },
       {
-        icon: Ruler,
-        title: "Diseno e Ingenieria",
-        desc: "Soluciones de diseno estructural, arquitectonico e instalaciones especiales.",
+        icon: ClipboardCheck,
+        title: "Licitaciones e Interventoria",
+        desc: "Asesoria en licitaciones, interventoria tecnica y administrativa de obras para garantizar cumplimiento y calidad.",
         image: "/images/pj4.jpeg",
       },
       {
-        icon: ClipboardCheck,
-        title: "Control de Costos",
-        desc: "Presupuestos detallados, control de gastos y optimizacion de recursos para cada proyecto.",
+        icon: TrendingUp,
+        title: "Control de Costos de Obra",
+        desc: "Seguimiento detallado y optimizacion de costos durante todo el ciclo de vida del proyecto constructivo.",
         image: "/images/pj3.jpeg",
       },
       {
-        icon: ShieldCheck,
-        title: "Seguridad Industrial",
-        desc: "Protocolos de seguridad y normativas para garantizar la integridad de tu equipo de trabajo.",
+        icon: Ruler,
+        title: "Diseno Arquitectonico e Interiores",
+        desc: "Diseno arquitectonico y de espacios interiores, diseno de edificaciones, espacios publicos y arquitectura paisajista.",
         image: "/images/pj2.jpeg",
-      },
-      {
-        icon: TrendingUp,
-        title: "Consultoria Tecnica",
-        desc: "Asesoria especializada para resolver problemas tecnicos y optimizar procesos constructivos.",
-        image: "/images/pj1.jpeg",
       },
     ],
   },
   taxlegal: {
-    title: "Servicios Legales y Fiscales",
-    subtitle: "Proteccion juridica y optimizacion fiscal a tu medida.",
+    title: "Servicios Juridicos y Tributarios",
+    subtitle:
+      "Practica centrada en asesoria tributaria internacional, consultoria local, fiscalizacion y planeacion patrimonial.",
     color: "#F9105E",
     services: [
       {
-        icon: FileText,
-        title: "Asesoramiento Fiscal",
-        desc: "Planeacion tributaria estrategica para personas fisicas y morales, maximizando beneficios fiscales.",
+        icon: Scale,
+        title: "Derecho Tributario Internacional",
+        desc: "Consultoria tributaria para multinacionales: esquemas societarios de expansion internacional, reestructuracion empresarial mediante fusiones, escisiones y adquisiciones, y coordinacion con equipos contables y juridicos.",
         image: "/images/t6.jpeg",
       },
       {
-        icon: Gavel,
-        title: "Litigio y Defensa",
-        desc: "Representacion legal en procedimientos administrativos, fiscales y judiciales.",
+        icon: FileText,
+        title: "Asesoria Tributaria Local",
+        desc: "Diagnostico tributario para buscar eficiencias, consultoria relacionada con reestructuraciones empresariales y acompanamiento juridico y tributario en las operaciones del dia a dia.",
         image: "/images/t3.jpeg",
       },
       {
-        icon: ShieldCheck,
-        title: "Compliance",
-        desc: "Programas de cumplimiento normativo y prevencion de riesgos legales para tu empresa.",
+        icon: Gavel,
+        title: "Procesos de Fiscalizacion",
+        desc: "Acompanamiento ante la Autoridad Tributaria, incluyendo la preparacion de recursos y respuestas ante la DIAN y autoridades municipales y departamentales.",
         image: "/images/t4.jpeg",
       },
       {
-        icon: Scale,
-        title: "Derecho Corporativo",
-        desc: "Constitucion de sociedades, contratos mercantiles y operaciones corporativas.",
-        image: "/images/t5.jpeg",
-      },
-      {
         icon: Users,
-        title: "Derecho Laboral",
-        desc: "Asesoria en relaciones laborales, contratos de trabajo y procedimientos ante autoridades laborales.",
-        image: "/images/t2.jpeg",
-      },
-      {
-        icon: Calculator,
-        title: "Contabilidad",
-        desc: "Servicios contables integrales, dictamenes fiscales y reportes financieros.",
-        image: "/images/t1.jpeg",
+        title: "Asesoria Patrimonial y Sucesoral",
+        desc: "Diseno de esquemas patrimoniales y sucesorales que se ajusten a la vision y necesidades de cada familia empresaria.",
+        image: "/images/t5.jpeg",
       },
     ],
   },
@@ -382,9 +362,15 @@ export default function ServicesSection({
               </div>
             )}
 
-            {/* ─── PROJECTS / TAX‑LEGAL: original 6‑card grid ─── */}
+            {/* ─── PROJECTS / TAX‑LEGAL: service card grid ─── */}
             {!isHome && content && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div
+                className={`grid grid-cols-1 gap-6 ${
+                  content.services.length <= 4
+                    ? "md:grid-cols-2 max-w-5xl mx-auto"
+                    : "md:grid-cols-2 lg:grid-cols-3"
+                }`}
+              >
                 {content.services.map((service, i) => {
                   const Icon = service.icon;
                   const isHovered = hoveredIndex === i;

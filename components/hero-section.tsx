@@ -14,25 +14,25 @@ const heroContent = {
   solutions: {
     tagline: "Tres mentes, Tres enfoques, Un solo proposito.",
     subtitle:
-      "Soluciones integrales para transformar tu negocio con vision estrategica y confianza.",
+      "Somos una empresa familiar con valores profundos. Nos esforzamos por entender la cultura y la vision de nuestros clientes, convirtiéndonos en sus asesores integrales.",
     color: "#1D1D1B",
     bgAccent: "#f5f5f5",
     image: "/images/logo-vertical-solutions-negro.png",
     bgImage: "url('/images/main2.jpg')",
   },
   projects: {
-    tagline: "Construimos el futuro con precision e ingenieria.",
+    tagline: "Integramos talento para construir tus proyectos.",
     subtitle:
-      "Gestion de proyectos de ingenieria con los mas altos estandares de calidad y eficiencia.",
+      "Actuamos como integradores de los diferentes actores que deben reunirse para la construccion de un proyecto, con servicios especializados de consultoria en arquitectura e ingenieria.",
     color: "#00A8FF",
     bgAccent: "#e8f7ff",
     image: "/images/logo-vertical-projects.png",
     bgImage: "url('/images/hero-bg-projects.jpg')",
   },
   taxlegal: {
-    tagline: "Tu seguridad legal, nuestra prioridad.",
+    tagline: "Estrategia tributaria y proteccion juridica integral.",
     subtitle:
-      "Asesoramiento fiscal y juridico de primera clase para proteger tus intereses.",
+      "Nuestra practica se centra en asesoria de derecho tributario internacional, consultoria para empresas locales, acompanamiento en procesos de fiscalizacion y asesoria patrimonial para familias empresarias.",
     color: "#F9105E",
     bgAccent: "#fff0f5",
     image: "/images/logo-vertical-taxlegal.png",
