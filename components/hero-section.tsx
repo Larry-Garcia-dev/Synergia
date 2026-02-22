@@ -11,7 +11,7 @@ interface HeroSectionProps {
 
 const heroContent = {
   solutions: {
-    tagline: "Tres mentes, Tres enfoques, Un solo proposito.",
+    tagline: "CONEXIÓN, CONTROL Y CONFIANZA.",
     subtitle:
       "Somos una empresa familiar con valores profundos. Nos esforzamos por entender la cultura y la vision de nuestros clientes, convirtiéndonos en sus asesores integrales.",
     color: "#1D1D1B",
@@ -26,16 +26,16 @@ const heroContent = {
     color: "#00A8FF",
     bgAccent: "#e8f7ff",
     image: "/images/logo-vertical-projects.png",
-    bgImage: "url('/images/hero-bg-projects.jpg')",
+    // bgImage: "url('/images/hero-bg-projects.jpg')",
   },
   taxlegal: {
     tagline: "Estrategia tributaria y proteccion juridica integral.",
     subtitle:
-      "Nuestra practica se centra en asesoria de derecho tributario internacional, consultoria para empresas locales, acompanamiento en procesos de fiscalizacion y asesoria patrimonial para familias empresarias.",
+      "El éxito no solo depende de la innovación y la expansión, sino también de una gestión eficiente de los recursos, especialmente cuando se trata de impuestos. La clave paralograrlo es la planificación fiscal estratégica",
     color: "#F9105E",
     bgAccent: "#fff0f5",
     image: "/images/logo-vertical-taxlegal.png",
-    bgImage: "url('/images/hero-bg-taxlegal.jpg')",
+    // bgImage: "url('/images/hero-bg-taxlegal.jpg')"
   },
 };
 
@@ -80,7 +80,7 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
           style={{
             backgroundColor: content.bgAccent,
             backgroundImage: content.bgImage
-              ? `linear-gradient(rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.47)), ${content.bgImage}`
+              ? `linear-gradient(rgba(255, 255, 255, 0.42), rgba(0, 0, 0, 0.03)), ${content.bgImage}`
               : undefined,
             backgroundSize: "cover",
             backgroundPosition: "center",

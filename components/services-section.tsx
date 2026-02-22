@@ -82,6 +82,12 @@ const servicesContent = {
         desc: "Diseno arquitectonico y de espacios interiores, diseno de edificaciones, espacios publicos y arquitectura paisajista.",
         image: "/images/pj2.jpeg",
       },
+      {
+        icon: Building2,
+        title: "Supervision de Obra",
+        desc: "Supervision tecnica y administrativa de obras para garantizar cumplimiento y calidad.",
+        image: "/images/pj1.jpeg",
+      },
     ],
   },
   taxlegal: {
