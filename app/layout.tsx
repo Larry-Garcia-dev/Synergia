@@ -1,18 +1,7 @@
 import React from "react"
 import type { Metadata } from 'next'
-import { Outfit, Playfair_Display } from 'next/font/google'
 
 import './globals.css'
-
-const outfit = Outfit({
-  subsets: ['latin'],
-  variable: '--font-outfit',
-})
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-playfair',
-})
 
 export const metadata: Metadata = {
   title: 'SYN3RGIA - Tres mentes, Tres enfoques, Un solo proposito',
@@ -26,7 +15,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${outfit.variable} ${playfair.variable} font-sans antialiased`}>{children}</body>
+      <head>
+        {/* Truco: El visitante descarga las fuentes directamente, no el servidor */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet" />
+      </head>
+      
+      {/* Inyectamos las variables de las fuentes manualmente para que Tailwind las detecte */}
+      <body 
+        className="font-sans antialiased" 
+        style={{ 
+          '--font-outfit': '"Outfit", sans-serif', 
+          '--font-playfair': '"Playfair Display", serif' 
+        } as React.CSSProperties}
+      >
+        {children}
+      </body>
     </html>
   )
 }
