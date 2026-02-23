@@ -266,13 +266,13 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
               <motion.div className="relative" variants={floatingVariants} animate="float">
                 {/* Glow background */}
                 <motion.div
-                  className="absolute -inset-6 rounded-2xl blur-3xl"
-                  style={{ backgroundColor: content.color, opacity: 0.12 }}
-                  animate={{
-                    opacity: [0.08, 0.15, 0.08],
-                    scale: [1, 1.03, 1],
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  // className="absolute -inset-6 rounded-2xl blur-3xl"
+                  // style={{ backgroundColor: content.color, opacity: 0.12 }}
+                  // animate={{
+                  //   opacity: [0.08, 0.15, 0.08],
+                  //   scale: [1, 1.03, 1],
+                  // }}
+                  // transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 />
 
                 <img
