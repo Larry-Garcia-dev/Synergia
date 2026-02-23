@@ -14,9 +14,9 @@ const heroContent = {
     tagline: "CONEXIÓN, CONTROL Y CONFIANZA.",
     subtitle:
       "Somos una empresa familiar con valores profundos. Nos esforzamos por entender la cultura y la vision de nuestros clientes, convirtiéndonos en sus asesores integrales.",
-    color: "#1D1D1B",
+    color: "#FFFFFF", // <-- Blanco para el botón y decoraciones
     bgAccent: "#f5f5f5",
-    image: "/images/logo-vertical-solutions-negro.png",
+    image: "/images/logo-vertical-solutions-negro1.png",
     bgImage: "url('/images/main2.jpg')",
   },
   projects: {
@@ -39,8 +39,6 @@ const heroContent = {
   },
 };
 
-
-
 const wordVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: (i: number) => ({
@@ -53,8 +51,6 @@ const wordVariants = {
     },
   }),
 };
-
-
 
 const floatingVariants = {
   float: {
@@ -175,10 +171,10 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
                     : "Tax & Legal"}
               </motion.div>
 
-              {/* Animated heading - word by word */}
+              {/* Animated heading - Condicional: Blanco para Solutions, Gris oscuro para los demás */}
               <motion.h1
                 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance"
-                style={{ color: "#1D1D1B" }}
+                style={{ color: activeBrand === "solutions" ? "#FFFFFF" : "#1D1D1B" }}
               >
                 {content.tagline
                   .split(/\s+/)
@@ -198,9 +194,14 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
                   ))}
               </motion.h1>
 
+              {/* Subtitle - Condicional: Blanco para Solutions, Negro para los demás */}
               <motion.p
                 className="mt-6 text-lg md:text-xl leading-relaxed max-w-xl text-pretty"
-                style={{ color: "#000000", wordBreak: "keep-all", overflowWrap: "normal" }}
+                style={{ 
+                  color: activeBrand === "solutions" ? "#FFFFFF" : "#000000", 
+                  wordBreak: "keep-all", 
+                  overflowWrap: "normal" 
+                }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
@@ -215,9 +216,12 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
               >
+                {/* Botón Principal - Condicional para las letras */}
                 <motion.a
                   href="#about"
-                  className="flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-white shadow-lg cursor-pointer"
+                  className={`flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold shadow-lg cursor-pointer ${
+                    activeBrand === "solutions" ? "text-black" : "text-white"
+                  }`}
                   style={{ backgroundColor: content.color }}
                   whileHover={{ scale: 1.05, boxShadow: `0 10px 30px ${content.color}40` }}
                   whileTap={{ scale: 0.97 }}
@@ -231,6 +235,7 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
                     <ArrowRight size={16} />
                   </motion.span>
                 </motion.a>
+                
                 <motion.a
                   href="#contacto"
                   className="px-8 py-3.5 rounded-full text-sm font-semibold border-2 bg-transparent cursor-pointer"
@@ -292,9 +297,6 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5 }}
         >
-          {/* <span className="text-xs font-medium" style={{ color: "#959696" }}>
-            Descubre mas
-          </span> */}
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
