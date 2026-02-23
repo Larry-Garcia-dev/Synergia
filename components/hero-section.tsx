@@ -284,7 +284,7 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
                         ? "SYN3RGIA Projects Logo"
                         : "SYN3RGIA Tax & Legal Logo"
                   }
-                  className="relative w-full max-w-sm md:max-w-md mx-auto object-contain drop-shadow-2xl"
+                  className="relative w-full max-w-sm md:max-w-md mx-auto object-contain"
                 />
               </motion.div>
             </motion.div>
