@@ -178,7 +178,7 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
               transition={{ delay: 0.5, duration: 0.5 }}
             >
               {[
-                { icon: MapPin, text: "Ibague, Tolima, Colombia" },
+                { icon: MapPin, text: "BOGOTÁ - IBAGUÉ - TOLIMA" },
                 { icon: Phone, text: "+57 318 123 4567" },
                 { icon: Mail, text: "contacto@syn3rgia.com" },
               ].map((item, i) => {
@@ -330,7 +330,7 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
                     <motion.input
                       id="contact-phone"
                       type="tel"
-                      placeholder="+57 300 000 0000"
+                      placeholder="+57 317 657 9037"
                       className="w-full px-4 py-3 rounded-xl text-sm bg-background outline-none transition-all"
                       style={{
                         border: `2px solid ${focusedField === "phone" ? data.color : "#e5e5e5"}`,

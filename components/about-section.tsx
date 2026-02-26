@@ -13,12 +13,12 @@ interface AboutSectionProps {
 const aboutContent = {
   solutions: {
     title: "Quienes Somos",
-    text: "Somos una empresa familiar, esto habla de nuestros valores mas profundos de lo que somos como firma y del proposito que tenemos al velar por los intereses de nuestros clientes. Nos esforzamos por entender la cultura y la vision de nuestros clientes, lo que, junto con el respeto por la confianza depositada, nos permite convertirnos en sus asesores integrales en todas las areas de conocimiento de nuestra firma.",
+    text: "Somos una sociedad de especialistas comprometidos con la excelencia técnica. Integramos nuestras trayectorias profesionales para ofrecer un acompañamiento directo y experto, convirtiéndonos en los asesores integrales que su proyecto necesita.",
     color: "#1D1D1B",
     icon: Users,
     highlights: [
-      { icon: Users, label: "Empresa Familiar", desc: "Valores profundos y proposito claro" },
-      { icon: Target, label: "Vision Integral", desc: "Asesores en todas las areas de conocimiento" },
+      { icon: Users, label: "Equipo interdisciplinario", desc: "Contamos con ingenieros, arquitectos, abogados y toda una red de aliados a nivel nacional e internacional" },
+      { icon: Target, label: "Vision Integral", desc: "Más de 15 años trabajando para clientes locales y extranjeros" },
       { icon: Shield, label: "Confianza", desc: "Respeto por la confianza depositada" },
     ],
     image: "/images/solutions-team.png",
@@ -47,7 +47,7 @@ const aboutContent = {
   },
   taxlegal: {
     title: "Nuestra Practica",
-    text: "Nuestra practica se centra en asesoria de derecho tributario internacional para multinacionales, consultoria tributaria para empresas locales, acompanamiento en procesos de fiscalizacion ante la DIAN y autoridades territoriales, y asesoria patrimonial y sucesoral disenada a la medida de cada familia empresaria.",
+    text: "Syn3rgia Tax & Legal es una firma especializada en asesoría tributaria y jurídica estratégica para proyectos constructivos, empresas de tecnología con enfoque internacional y empresas familiares del Eje Cafetero y Tolima. Acompañamos procesos de estructuración, reorganización empresarial, expansión internacional, fiscalizaciones y planeación patrimonial, ofreciendo soluciones sólidas, eficientes y alineadas con el crecimiento y la sostenibilidad de cada cliente.",
     color: "#F9105E",
     icon: Scale,
     highlights: [

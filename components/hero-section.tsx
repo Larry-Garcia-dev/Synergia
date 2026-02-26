@@ -11,18 +11,18 @@ interface HeroSectionProps {
 
 const heroContent = {
   solutions: {
-    tagline: "CONEXIÓN, CONTROL Y CONFIANZA.",
+    tagline: "CONEXIÓN, CONTROL Y CONFIANZA",
     subtitle:
-      "Somos una empresa familiar con valores profundos. Nos esforzamos por entender la cultura y la vision de nuestros clientes, convirtiéndonos en sus asesores integrales.",
+      "Somos un equipo multidisciplinar que integra visión y rigor técnico. Nos apasiona entender la cultura de quienes confían en nosotros, brindando una asesoría integral que garantiza seguridad y control en cada decisión",
     color: "#FFFFFF", // <-- Blanco para el botón y decoraciones
     bgAccent: "#f5f5f5",
     image: "/images/logo-vertical-solutions-negro1.png",
     bgImage: "url('/images/main2.jpg')",
   },
   projects: {
-    tagline: "Integramos talento para construir tus proyectos.",
+    tagline: "Lideramos el control estratégico de tus proyectos",
     subtitle:
-      "Actuamos como integradores de los diferentes actores que deben reunirse para la construccion de un proyecto, con servicios especializados de consultoria en arquitectura e ingenieria.",
+      "Actuamos como el eje de control entre los diferentes actores de la obra. Brindamos servicios especializados de consultoría en gerencia, programación e interventoría, garantizando que cada fase de la construcción cumpla con los más altos estándares de eficiencia.",
     color: "#00A8FF",
     bgAccent: "#e8f7ff",
     image: "/images/logo-vertical-projects.png",
@@ -31,7 +31,7 @@ const heroContent = {
   taxlegal: {
     tagline: "Estrategia tributaria y proteccion juridica integral.",
     subtitle:
-      "El éxito no solo depende de la innovación y la expansión, sino también de una gestión eficiente de los recursos, especialmente cuando se trata de impuestos. La clave paralograrlo es la planificación fiscal estratégica",
+      "El éxito no solo depende de la innovación y la expansión, sino también de una gestión eficiente de los recursos, especialmente cuando se trata de impuestos. La clave paralograrlo es la planificación fiscal estratégica.",
     color: "#F9105E",
     bgAccent: "#fff0f5",
     image: "/images/logo-vertical-taxlegal.png",

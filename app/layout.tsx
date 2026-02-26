@@ -6,7 +6,13 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'SYN3RGIA - Tres mentes, Tres enfoques, Un solo proposito',
   description: 'SYN3RGIA Solutions & Consulting, Projects, Tax & Legal - Asesores integrales para tu negocio.',
+  icons: {
+    icon: '/images/logo.png', // Asegúrate de que el archivo esté en la carpeta /public
+    // O si usas un PNG:
+    //apple: '/images/logo-vertical-solutions-negro.png', 
+  },
 }
+
 
 export default function RootLayout({
   children,

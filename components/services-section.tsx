@@ -37,7 +37,8 @@ const homeCards = [
     brand: "projects" as BrandKey,
     title: "Projects",
     description:
-      "Servicios especializados de consultoria en arquitectura e ingenieria, desde estudios urbanisticos y presupuestos hasta diseno arquitectonico y control de obra.",
+      "Consultoría técnica especializada en gerencia de proyectos. Expertos en programación, presupuestos e interventoría, asegurando que cada fase de la obra sea eficiente, segura y se cumpla en los tiempos pactados",
+
     logo: "/images/logo-vertical-projects.png",
     color: "#00A8FF",
     buttonText: "Conocer mas",
