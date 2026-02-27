@@ -11,7 +11,7 @@ interface HeroSectionProps {
 
 const heroContent = {
   solutions: {
-    tagline: "CONEXIÓN, CONTROL Y CONFIANZA",
+    tagline: "INTEGRACIÓN, PLANEACIÓN Y CONFIANZA",
     subtitle:
       "Somos un equipo multidisciplinar que integra visión y rigor técnico. Nos apasiona entender la cultura de quienes confían en nosotros, brindando una asesoría integral que garantiza seguridad y control en cada decisión",
     color: "#FFFFFF", // <-- Blanco para el botón y decoraciones
