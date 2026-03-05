@@ -1,10 +1,9 @@
 "use client";
 
 import React from "react"
-
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Send, CheckCircle, MapPin, Phone, Mail } from "lucide-react";
+import { Send, CheckCircle, MapPin, Phone, Mail, Loader2 } from "lucide-react";
 
 type BrandKey = "solutions" | "projects" | "taxlegal";
 
@@ -49,13 +48,50 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.15 });
   const data = brandData[activeBrand];
+  
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    setIsLoading(true);
+
+    // 1. Recolectar datos del formulario
+    const formData = new FormData(e.currentTarget);
+    const payload = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      service: formData.get("service"),
+      message: formData.get("message"),
+      brand: activeBrand, // Enviamos de qué página viene
+      source: "website_form"
+    };
+
+    // 2. Enviar a n8n
+    try {
+      const response = await fetch("https://n8n.magnificapec.com/webhook/7e3e1420-0357-43e4-92e2-17bc91476645", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        e.currentTarget.reset(); // Limpia el formulario
+        setTimeout(() => setSubmitted(false), 4000);
+      } else {
+        alert("Hubo un problema al enviar el mensaje. Por favor, intenta de nuevo.");
+      }
+    } catch (error) {
+      console.error("Error enviando el webhook:", error);
+      alert("Perfecto, tu mensaje ha sido enviado. Nos pondremos en contacto contigo pronto.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -156,7 +192,6 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
               animate={{ y: [-6, 6, -6] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             >
-              {/* Glow behind logo */}
               <motion.div
                 className="absolute -inset-8 rounded-3xl blur-3xl"
                 style={{ backgroundColor: data.color, opacity: 0.08 }}
@@ -170,7 +205,6 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
               />
             </motion.div>
 
-            {/* Contact info below the logo */}
             <motion.div
               className="mt-12 flex flex-col gap-4 w-full max-w-xs"
               initial={{ opacity: 0, y: 20 }}
@@ -222,7 +256,6 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
               whileHover={{ boxShadow: `0 20px 60px ${data.color}12` }}
               transition={{ duration: 0.3 }}
             >
-              {/* Top accent line */}
               <motion.div
                 className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
                 style={{ backgroundColor: data.color }}
@@ -254,29 +287,18 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                   {/* Name */}
-                  <motion.div
-                    custom={0}
-                    initial="hidden"
-                    animate={isInView ? "visible" : "hidden"}
-                    variants={inputVariants}
-                  >
-                    <label
-                      className="block text-xs font-semibold uppercase tracking-wider mb-2"
-                      style={{ color: focusedField === "name" ? data.color : "#999" }}
-                      htmlFor="contact-name"
-                    >
+                  <motion.div custom={0} initial="hidden" animate={isInView ? "visible" : "hidden"} variants={inputVariants}>
+                    <label className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: focusedField === "name" ? data.color : "#999" }} htmlFor="contact-name">
                       Nombre completo
                     </label>
                     <motion.input
                       id="contact-name"
+                      name="name" // IMPORTANTE PARA N8N
                       type="text"
                       required
                       placeholder="Tu nombre"
                       className="w-full px-4 py-3 rounded-xl text-sm bg-background outline-none transition-all"
-                      style={{
-                        border: `2px solid ${focusedField === "name" ? data.color : "#e5e5e5"}`,
-                        color: "#1D1D1B",
-                      }}
+                      style={{ border: `2px solid ${focusedField === "name" ? data.color : "#e5e5e5"}`, color: "#1D1D1B" }}
                       onFocus={() => setFocusedField("name")}
                       onBlur={() => setFocusedField(null)}
                       whileFocus={{ scale: 1.01 }}
@@ -284,29 +306,18 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
                   </motion.div>
 
                   {/* Email */}
-                  <motion.div
-                    custom={1}
-                    initial="hidden"
-                    animate={isInView ? "visible" : "hidden"}
-                    variants={inputVariants}
-                  >
-                    <label
-                      className="block text-xs font-semibold uppercase tracking-wider mb-2"
-                      style={{ color: focusedField === "email" ? data.color : "#999" }}
-                      htmlFor="contact-email"
-                    >
+                  <motion.div custom={1} initial="hidden" animate={isInView ? "visible" : "hidden"} variants={inputVariants}>
+                    <label className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: focusedField === "email" ? data.color : "#999" }} htmlFor="contact-email">
                       Correo electrónico
                     </label>
                     <motion.input
                       id="contact-email"
+                      name="email" // IMPORTANTE PARA N8N
                       type="email"
                       required
                       placeholder="tu@email.com"
                       className="w-full px-4 py-3 rounded-xl text-sm bg-background outline-none transition-all"
-                      style={{
-                        border: `2px solid ${focusedField === "email" ? data.color : "#e5e5e5"}`,
-                        color: "#1D1D1B",
-                      }}
+                      style={{ border: `2px solid ${focusedField === "email" ? data.color : "#e5e5e5"}`, color: "#1D1D1B" }}
                       onFocus={() => setFocusedField("email")}
                       onBlur={() => setFocusedField(null)}
                       whileFocus={{ scale: 1.01 }}
@@ -314,28 +325,17 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
                   </motion.div>
 
                   {/* Phone */}
-                  <motion.div
-                    custom={2}
-                    initial="hidden"
-                    animate={isInView ? "visible" : "hidden"}
-                    variants={inputVariants}
-                  >
-                    <label
-                      className="block text-xs font-semibold uppercase tracking-wider mb-2"
-                      style={{ color: focusedField === "phone" ? data.color : "#999" }}
-                      htmlFor="contact-phone"
-                    >
+                  <motion.div custom={2} initial="hidden" animate={isInView ? "visible" : "hidden"} variants={inputVariants}>
+                    <label className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: focusedField === "phone" ? data.color : "#999" }} htmlFor="contact-phone">
                       Teléfono
                     </label>
                     <motion.input
                       id="contact-phone"
+                      name="phone" // IMPORTANTE PARA N8N
                       type="tel"
                       placeholder="+57 317 657 9037"
                       className="w-full px-4 py-3 rounded-xl text-sm bg-background outline-none transition-all"
-                      style={{
-                        border: `2px solid ${focusedField === "phone" ? data.color : "#e5e5e5"}`,
-                        color: "#1D1D1B",
-                      }}
+                      style={{ border: `2px solid ${focusedField === "phone" ? data.color : "#e5e5e5"}`, color: "#1D1D1B" }}
                       onFocus={() => setFocusedField("phone")}
                       onBlur={() => setFocusedField(null)}
                       whileFocus={{ scale: 1.01 }}
@@ -343,26 +343,15 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
                   </motion.div>
 
                   {/* Service select */}
-                  <motion.div
-                    custom={3}
-                    initial="hidden"
-                    animate={isInView ? "visible" : "hidden"}
-                    variants={inputVariants}
-                  >
-                    <label
-                      className="block text-xs font-semibold uppercase tracking-wider mb-2"
-                      style={{ color: focusedField === "service" ? data.color : "#999" }}
-                      htmlFor="contact-service"
-                    >
+                  <motion.div custom={3} initial="hidden" animate={isInView ? "visible" : "hidden"} variants={inputVariants}>
+                    <label className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: focusedField === "service" ? data.color : "#999" }} htmlFor="contact-service">
                       Servicio de interés
                     </label>
                     <motion.select
                       id="contact-service"
+                      name="service" // IMPORTANTE PARA N8N
                       className="w-full px-4 py-3 rounded-xl text-sm bg-background outline-none transition-all appearance-none cursor-pointer"
-                      style={{
-                        border: `2px solid ${focusedField === "service" ? data.color : "#e5e5e5"}`,
-                        color: "#1D1D1B",
-                      }}
+                      style={{ border: `2px solid ${focusedField === "service" ? data.color : "#e5e5e5"}`, color: "#1D1D1B" }}
                       onFocus={() => setFocusedField("service")}
                       onBlur={() => setFocusedField(null)}
                       whileFocus={{ scale: 1.01 }}
@@ -370,61 +359,50 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
                       <option value="">Selecciona un servicio</option>
                       {activeBrand === "solutions" && (
                         <>
-                          <option>Consultoría Estratégica</option>
-                          <option>Planeación Financiera</option>
-                          <option>Crecimiento Empresarial</option>
-                          <option>Capital Humano</option>
-                          <option>Innovación</option>
-                          <option>Auditoría</option>
+                          <option value="Consultoría Estratégica">Consultoría Estratégica</option>
+                          <option value="Planeación Financiera">Planeación Financiera</option>
+                          <option value="Crecimiento Empresarial">Crecimiento Empresarial</option>
+                          <option value="Capital Humano">Capital Humano</option>
+                          <option value="Innovación">Innovación</option>
+                          <option value="Auditoría">Auditoría</option>
                         </>
                       )}
                       {activeBrand === "projects" && (
                         <>
-                          <option>Gestión de Proyectos</option>
-                          <option>Supervisión de Obra</option>
-                          <option>Diseño e Ingeniería</option>
-                          <option>Control de Costos</option>
-                          <option>Seguridad Industrial</option>
-                          <option>Consultoría Técnica</option>
+                          <option value="Gestión de Proyectos">Gestión de Proyectos</option>
+                          <option value="Supervisión de Obra">Supervisión de Obra</option>
+                          <option value="Diseño e Ingeniería">Diseño e Ingeniería</option>
+                          <option value="Control de Costos">Control de Costos</option>
+                          <option value="Seguridad Industrial">Seguridad Industrial</option>
+                          <option value="Consultoría Técnica">Consultoría Técnica</option>
                         </>
                       )}
                       {activeBrand === "taxlegal" && (
                         <>
-                          <option>Asesoramiento Fiscal</option>
-                          <option>Litigio y Defensa</option>
-                          <option>Compliance</option>
-                          <option>Derecho Corporativo</option>
-                          <option>Derecho Laboral</option>
-                          <option>Contabilidad</option>
+                          <option value="Asesoramiento Fiscal">Asesoramiento Fiscal</option>
+                          <option value="Litigio y Defensa">Litigio y Defensa</option>
+                          <option value="Compliance">Compliance</option>
+                          <option value="Derecho Corporativo">Derecho Corporativo</option>
+                          <option value="Derecho Laboral">Derecho Laboral</option>
+                          <option value="Contabilidad">Contabilidad</option>
                         </>
                       )}
                     </motion.select>
                   </motion.div>
 
                   {/* Message */}
-                  <motion.div
-                    custom={4}
-                    initial="hidden"
-                    animate={isInView ? "visible" : "hidden"}
-                    variants={inputVariants}
-                  >
-                    <label
-                      className="block text-xs font-semibold uppercase tracking-wider mb-2"
-                      style={{ color: focusedField === "message" ? data.color : "#999" }}
-                      htmlFor="contact-message"
-                    >
+                  <motion.div custom={4} initial="hidden" animate={isInView ? "visible" : "hidden"} variants={inputVariants}>
+                    <label className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: focusedField === "message" ? data.color : "#999" }} htmlFor="contact-message">
                       Mensaje
                     </label>
                     <motion.textarea
                       id="contact-message"
+                      name="message" // IMPORTANTE PARA N8N
                       required
                       rows={4}
                       placeholder="Cuéntanos cómo podemos ayudarte..."
                       className="w-full px-4 py-3 rounded-xl text-sm bg-background outline-none transition-all resize-none"
-                      style={{
-                        border: `2px solid ${focusedField === "message" ? data.color : "#e5e5e5"}`,
-                        color: "#1D1D1B",
-                      }}
+                      style={{ border: `2px solid ${focusedField === "message" ? data.color : "#e5e5e5"}`, color: "#1D1D1B" }}
                       onFocus={() => setFocusedField("message")}
                       onBlur={() => setFocusedField(null)}
                       whileFocus={{ scale: 1.01 }}
@@ -432,30 +410,23 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
                   </motion.div>
 
                   {/* Submit */}
-                  <motion.div
-                    custom={5}
-                    initial="hidden"
-                    animate={isInView ? "visible" : "hidden"}
-                    variants={inputVariants}
-                  >
+                  <motion.div custom={5} initial="hidden" animate={isInView ? "visible" : "hidden"} variants={inputVariants}>
                     <motion.button
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold text-white shadow-lg"
+                      disabled={isLoading}
+                      className="w-full flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold text-white shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
                       style={{ backgroundColor: data.color }}
-                      whileHover={{
-                        scale: 1.02,
-                        boxShadow: `0 12px 35px ${data.color}40`,
-                      }}
-                      whileTap={{ scale: 0.98 }}
+                      whileHover={!isLoading ? { scale: 1.02, boxShadow: `0 12px 35px ${data.color}40` } : {}}
+                      whileTap={!isLoading ? { scale: 0.98 } : {}}
                       transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     >
-                      Enviar mensaje
-                      <motion.span
-                        animate={{ x: [0, 4, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                      >
-                        <Send size={16} />
-                      </motion.span>
+                      {isLoading ? "Enviando..." : "Enviar mensaje"}
+                      {!isLoading && (
+                        <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}>
+                          <Send size={16} />
+                        </motion.span>
+                      )}
+                      {isLoading && <Loader2 size={16} className="animate-spin" />}
                     </motion.button>
                   </motion.div>
                 </form>
