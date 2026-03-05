@@ -12,54 +12,54 @@ interface AboutSectionProps {
 
 const aboutContent = {
   solutions: {
-    title: "Quienes Somos",
+    title: "Quiénes Somos",
     text: "Somos una sociedad de especialistas comprometidos con la excelencia técnica. Integramos nuestras trayectorias profesionales para ofrecer un acompañamiento directo y experto, convirtiéndonos en los asesores integrales que su proyecto necesita.",
     color: "#1D1D1B",
     icon: Users,
     highlights: [
       { icon: Users, label: "Equipo interdisciplinario", desc: "Contamos con ingenieros, arquitectos, abogados y toda una red de aliados a nivel nacional e internacional" },
-      { icon: Target, label: "Vision Integral", desc: "Más de 15 años trabajando para clientes locales y extranjeros" },
+      { icon: Target, label: "Visión Integral", desc: "Más de 15 años trabajando para clientes locales y extranjeros" },
       { icon: Shield, label: "Confianza", desc: "Respeto por la confianza depositada" },
     ],
     image: "/images/solutions-team.png",
     bulletPoints: [
-      "Asesoria integral de negocios",
+      "Asesoría integral de negocios",
       "Cultura de valores familiares",
-      "Vision estrategica a largo plazo",
+      "Visión estratégica a largo plazo",
     ],
   },
   projects: {
     title: "Nuestro Enfoque",
-    text: "Actuamos esencialmente como integradores de los diferentes actores que deben reunirse para realizar la construccion de un proyecto. Prestamos servicios especializados de consultoria en arquitectura e ingenieria, abarcando desde estudios urbanisticos hasta el diseno arquitectonico y el control de costos de obra.",
+    text: "Actuamos como el eje de control entre los diferentes actores de la obra. Brindamos servicios especializados de consultoría en gerencia, programación e interventoría, garantizando que cada fase de la construcción cumpla con los más altos estándares de eficiencia.",
     color: "#00A8FF",
     icon: Building2,
     highlights: [
       { icon: Building2, label: "Integradores", desc: "Reunimos los actores clave de cada proyecto" },
-      { icon: Target, label: "Consultoria Especializada", desc: "Arquitectura e ingenieria integral" },
-      { icon: Shield, label: "Control Total", desc: "Presupuestos, programacion y costos de obra" },
+      { icon: Target, label: "Consultoría Especializada", desc: "Arquitectura e ingeniería integral" },
+      { icon: Shield, label: "Control Total", desc: "Presupuestos, programación y costos de obra" },
     ],
     image: "/images/project-engineer-2.png",
     bulletPoints: [
-      "Integracion de actores del proyecto",
-      "Consultoria en arquitectura e ingenieria",
-      "Control de costos y programacion de obra",
+      "Integración de actores del proyecto",
+      "Consultoría en arquitectura e ingeniería",
+      "Control de costos y programación de obra",
     ],
   },
   taxlegal: {
-    title: "Nuestra Practica",
-    text: "Syn3rgia Tax & Legal es una firma especializada en asesoría tributaria y jurídica estratégica para proyectos constructivos, empresas de tecnología con enfoque internacional y empresas familiares del Eje Cafetero y Tolima. Acompañamos procesos de estructuración, reorganización empresarial, expansión internacional, fiscalizaciones y planeación patrimonial, ofreciendo soluciones sólidas, eficientes y alineadas con el crecimiento y la sostenibilidad de cada cliente.",
+    title: "Nuestra Práctica",
+    text: "Syn3rgia Tax & Legal es una firma especializada en asesoría tributaria y jurídica estratégica para proyectos constructivos, empresas de tecnología con enfoque internacional y empresas familiares. Acompañamos procesos de estructuración, reorganización empresarial, expansión internacional, fiscalizaciones y planeación patrimonial, ofreciendo soluciones sólidas, eficientes y alineadas con el crecimiento y la sostenibilidad de cada cliente.",
     color: "#F9105E",
     icon: Scale,
     highlights: [
-      { icon: Scale, label: "Tributario Internacional", desc: "Expansion, fusiones y adquisiciones" },
-      { icon: Briefcase, label: "Consultoria Local", desc: "Diagnostico y eficiencias tributarias" },
-      { icon: Shield, label: "Asesoria Patrimonial", desc: "Esquemas a medida para familias empresarias" },
+      { icon: Scale, label: "Tributario Internacional", desc: "Expansión, fusiones y adquisiciones" },
+      { icon: Briefcase, label: "Consultoría Local", desc: "Diagnóstico y eficiencias tributarias" },
+      { icon: Shield, label: "Asesoría Patrimonial", desc: "Esquemas a medida para familias empresarias" },
     ],
     image: "/images/task-woman.png",
     bulletPoints: [
       "Derecho tributario internacional y local",
-      "Acompanamiento en fiscalizacion ante la DIAN",
-      "Asesoria patrimonial y sucesoral",
+      "Acompañamiento en fiscalización ante la DIAN",
+      "Asesoría patrimonial y sucesoral",
     ],
   },
 };
@@ -139,7 +139,7 @@ export default function AboutSection({ activeBrand }: AboutSectionProps) {
                   transition={{ duration: 0.6, delay: 0.2 }}
                 />
                 <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: content.color }}>
-                  {activeBrand === "solutions" ? "Nosotros" : activeBrand === "projects" ? "Enfoque" : "Mision"}
+                  {activeBrand === "solutions" ? "Nosotros" : activeBrand === "projects" ? "Enfoque" : "Misión"}
                 </span>
                 <motion.div
                   className="w-8 h-1 rounded-full"

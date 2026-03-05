@@ -28,97 +28,96 @@ const homeCards = [
     brand: "taxlegal" as BrandKey,
     title: "Tax & Legal",
     description:
-      "Asesoria en derecho tributario internacional, consultoria para empresas locales, acompanamiento en fiscalizacion y planeacion patrimonial para familias empresarias.",
+      "Asesoría en derecho tributario internacional, consultoría para empresas locales, acompañamiento en fiscalización y planeación patrimonial para familias empresarias.",
     logo: "/images/logo-vertical-taxlegal.png",
     color: "#F9105E",
-    buttonText: "Conocer mas",
+    buttonText: "Conocer más",
   },
   {
     brand: "projects" as BrandKey,
     title: "Projects",
     description:
-      "Consultoría técnica especializada en gerencia de proyectos. Expertos en programación, presupuestos e interventoría, asegurando que cada fase de la obra sea eficiente, segura y se cumpla en los tiempos pactados",
-
+      "Consultoría técnica especializada en gerencia de proyectos. Expertos en programación, presupuestos e interventoría, asegurando que cada fase de la obra sea eficiente, segura y se cumpla en los tiempos pactados.",
     logo: "/images/logo-vertical-projects.png",
     color: "#00A8FF",
-    buttonText: "Conocer mas",
+    buttonText: "Conocer más",
   },
 ];
 
 /* ── Projects & Tax‑Legal views: service grids based on real practice areas ── */
 const servicesContent = {
   projects: {
-    title: "Consultoria en Arquitectura e Ingenieria",
+    title: "Consultoría en Arquitectura e Ingeniería",
     subtitle:
-      "Servicios especializados como integradores de los diferentes actores que deben reunirse para la construccion de un proyecto.",
+      "Servicios especializados como integradores de los diferentes actores que deben reunirse para la construcción de un proyecto.",
     color: "#00A8FF",
     services: [
       {
         icon: Building2,
-        title: "Programas Urbanisticos",
-        desc: "Estudios de programas urbanisticos para el desarrollo integral de proyectos de construccion e infraestructura.",
+        title: "Programas Urbanísticos",
+        desc: "Estudios de programas urbanísticos para el desarrollo integral de proyectos de construcción e infraestructura.",
         image: "/images/pj6.jpeg",
       },
       {
         icon: Calculator,
         title: "Presupuestos y Control de Obra",
-        desc: "Elaboracion de analisis de precios unitarios, presupuestos, programacion y control de obra para cada etapa del proyecto.",
+        desc: "Elaboración de análisis de precios unitarios, presupuestos, programación y control de obra para cada etapa del proyecto.",
         image: "/images/pj5.jpeg",
       },
       {
         icon: ClipboardCheck,
-        title: "Licitaciones e Interventoria",
-        desc: "Asesoria en licitaciones, interventoria tecnica y administrativa de obras para garantizar cumplimiento y calidad.",
+        title: "Licitaciones e Interventoría",
+        desc: "Asesoría en licitaciones, interventoría técnica y administrativa de obras para garantizar cumplimiento y calidad.",
         image: "/images/pj4.jpeg",
       },
       {
         icon: TrendingUp,
         title: "Control de Costos de Obra",
-        desc: "Seguimiento detallado y optimizacion de costos durante todo el ciclo de vida del proyecto constructivo.",
+        desc: "Seguimiento detallado y optimización de costos durante todo el ciclo de vida del proyecto constructivo.",
         image: "/images/pj3.jpeg",
       },
       {
         icon: Ruler,
-        title: "Diseno Arquitectonico e Interiores",
-        desc: "Diseno arquitectonico y de espacios interiores, diseno de edificaciones, espacios publicos y arquitectura paisajista.",
+        title: "Diseño Arquitectónico e Interiores",
+        desc: "Diseño arquitectónico y de espacios interiores, diseño de edificaciones, espacios públicos y arquitectura paisajista.",
         image: "/images/pj2.jpeg",
       },
       {
         icon: Building2,
-        title: "Supervision de Obra",
-        desc: "Supervision tecnica y administrativa de obras para garantizar cumplimiento y calidad.",
+        title: "Supervisión de Obra",
+        desc: "Supervisión técnica y administrativa de obras para garantizar cumplimiento y calidad.",
         image: "/images/pj1.jpeg",
       },
     ],
   },
   taxlegal: {
-    title: "Servicios Juridicos y Tributarios",
+    title: "Servicios Jurídicos y Tributarios",
     subtitle:
-      "Practica centrada en asesoria tributaria internacional, consultoria local, fiscalizacion y planeacion patrimonial.",
+      "Práctica centrada en asesoría tributaria internacional, consultoría local, fiscalización y planeación patrimonial.",
     color: "#F9105E",
     services: [
       {
         icon: Scale,
         title: "Derecho Tributario Internacional",
-        desc: "Consultoria tributaria para multinacionales: esquemas societarios de expansion internacional, reestructuracion empresarial mediante fusiones, escisiones y adquisiciones, y coordinacion con equipos contables y juridicos.",
+        desc: "Consultoría tributaria para multinacionales: esquemas societarios de expansión internacional, reestructuración empresarial mediante fusiones, escisiones y adquisiciones, y coordinación con equipos contables y jurídicos.",
         image: "/images/t6.jpeg",
       },
       {
         icon: FileText,
-        title: "Asesoria Tributaria Local",
-        desc: "Diagnostico tributario para buscar eficiencias, consultoria relacionada con reestructuraciones empresariales y acompanamiento juridico y tributario en las operaciones del dia a dia.",
+        title: "Asesoría Tributaria Local",
+        desc: "Diagnóstico tributario para buscar eficiencias, consultoría relacionada con reestructuraciones empresariales y acompañamiento jurídico y tributario en las operaciones del día a día.",
         image: "/images/t3.jpeg",
       },
       {
         icon: Gavel,
-        title: "Procesos de Fiscalizacion",
-        desc: "Acompanamiento ante la Autoridad Tributaria, incluyendo la preparacion de recursos y respuestas ante la DIAN y autoridades municipales y departamentales.",
+        title: "Procesos de Fiscalización",
+        desc: "Acompañamiento ante la Autoridad Tributaria, incluyendo la preparación de recursos y respuestas ante la DIAN y autoridades municipales y departamentales.",
         image: "/images/t4.jpeg",
       },
       {
         icon: Users,
-        title: "Asesoria Patrimonial y Sucesoral",
-        desc: "Diseno de esquemas patrimoniales y sucesorales que se ajusten a la vision y necesidades de cada familia empresaria.",
+        title: "Asesoría Patrimonial y Sucesoral",
+        desc: "Diseño de esquemas patrimoniales y sucesorales que se ajusten a la visión y necesidades de cada familia empresaria.",
         image: "/images/t5.jpeg",
       },
     ],
@@ -447,7 +446,7 @@ export default function ServicesSection({
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.3 }}
                         >
-                          Contactanos
+                          Contáctanos
                           <ArrowRight size={12} />
                         </motion.a>
                       </div>

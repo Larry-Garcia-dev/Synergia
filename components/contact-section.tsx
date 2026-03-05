@@ -18,21 +18,21 @@ const brandData = {
     colorLight: "#1D1D1B10",
     label: "Solutions & Consulting",
     logo: "/images/logo-vertical-solutions-negro.png",
-    tagline: "Cuentanos sobre tu proyecto y te asesoramos integralmente.",
+    tagline: "Cuéntanos sobre tu proyecto y te asesoramos integralmente.",
   },
   projects: {
     color: "#00A8FF",
     colorLight: "#00A8FF10",
     label: "Projects",
     logo: "/images/logo-vertical-projects.png",
-    tagline: "Describenos tu proyecto de ingenieria y lo hacemos realidad.",
+    tagline: "Descríbenos tu proyecto de ingeniería y lo hacemos realidad.",
   },
   taxlegal: {
     color: "#F9105E",
     colorLight: "#F9105E10",
     label: "Tax & Legal",
     logo: "/images/logo-vertical-taxlegal.png",
-    tagline: "Consultanos tu caso y protegemos tus intereses.",
+    tagline: "Consúltanos tu caso y protegemos tus intereses.",
   },
 };
 
@@ -129,7 +129,7 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
             className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold"
             style={{ color: "#1D1D1B" }}
           >
-            Contactanos
+            Contáctanos
           </h2>
           <motion.p
             className="mt-4 text-lg max-w-2xl mx-auto"
@@ -178,9 +178,9 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
               transition={{ delay: 0.5, duration: 0.5 }}
             >
               {[
-                { icon: MapPin, text: "BOGOTÁ - IBAGUÉ - TOLIMA" },
-                { icon: Phone, text: "+57 318 123 4567" },
-                { icon: Mail, text: "contacto@syn3rgia.com" },
+                { icon: MapPin, text: "BOGOTÁ – IBAGUÉ – EJE CAFETERO" },
+                { icon: Phone, text: " +57 3176579037" },
+                { icon: Mail, text: "taxlegal.syn3rgia@gmail.com" },
               ].map((item, i) => {
                 const Icon = item.icon;
                 return (
@@ -295,7 +295,7 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
                       style={{ color: focusedField === "email" ? data.color : "#999" }}
                       htmlFor="contact-email"
                     >
-                      Correo electronico
+                      Correo electrónico
                     </label>
                     <motion.input
                       id="contact-email"
@@ -325,7 +325,7 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
                       style={{ color: focusedField === "phone" ? data.color : "#999" }}
                       htmlFor="contact-phone"
                     >
-                      Telefono
+                      Teléfono
                     </label>
                     <motion.input
                       id="contact-phone"
@@ -354,7 +354,7 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
                       style={{ color: focusedField === "service" ? data.color : "#999" }}
                       htmlFor="contact-service"
                     >
-                      Servicio de interes
+                      Servicio de interés
                     </label>
                     <motion.select
                       id="contact-service"
@@ -370,22 +370,22 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
                       <option value="">Selecciona un servicio</option>
                       {activeBrand === "solutions" && (
                         <>
-                          <option>Consultoria Estrategica</option>
-                          <option>Planeacion Financiera</option>
+                          <option>Consultoría Estratégica</option>
+                          <option>Planeación Financiera</option>
                           <option>Crecimiento Empresarial</option>
                           <option>Capital Humano</option>
-                          <option>Innovacion</option>
-                          <option>Auditoria</option>
+                          <option>Innovación</option>
+                          <option>Auditoría</option>
                         </>
                       )}
                       {activeBrand === "projects" && (
                         <>
-                          <option>Gestion de Proyectos</option>
-                          <option>Supervision de Obra</option>
-                          <option>Diseno e Ingenieria</option>
+                          <option>Gestión de Proyectos</option>
+                          <option>Supervisión de Obra</option>
+                          <option>Diseño e Ingeniería</option>
                           <option>Control de Costos</option>
                           <option>Seguridad Industrial</option>
-                          <option>Consultoria Tecnica</option>
+                          <option>Consultoría Técnica</option>
                         </>
                       )}
                       {activeBrand === "taxlegal" && (
@@ -419,7 +419,7 @@ export default function ContactSection({ activeBrand }: ContactSectionProps) {
                       id="contact-message"
                       required
                       rows={4}
-                      placeholder="Cuentanos como podemos ayudarte..."
+                      placeholder="Cuéntanos cómo podemos ayudarte..."
                       className="w-full px-4 py-3 rounded-xl text-sm bg-background outline-none transition-all resize-none"
                       style={{
                         border: `2px solid ${focusedField === "message" ? data.color : "#e5e5e5"}`,

@@ -29,9 +29,9 @@ const heroContent = {
     // bgImage: "url('/images/hero-bg-projects.jpg')",
   },
   taxlegal: {
-    tagline: "Estrategia tributaria y proteccion juridica integral.",
+    tagline: "Estrategia tributaria y protección jurídica integral.",
     subtitle:
-      "El éxito no solo depende de la innovación y la expansión, sino también de una gestión eficiente de los recursos, especialmente cuando se trata de impuestos. La clave paralograrlo es la planificación fiscal estratégica.",
+      "El éxito no solo depende de la innovación y la expansión, sino también de una gestión eficiente de los recursos, especialmente cuando se trata de impuestos. La clave para lograrlo es la planificación fiscal estratégica.",
     color: "#F9105E",
     bgAccent: "#fff0f5",
     image: "/images/logo-vertical-taxlegal.png",
@@ -227,7 +227,7 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
-                  Conocer mas
+                  Conocer más
                   <motion.span
                     animate={{ x: [0, 4, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
@@ -249,7 +249,7 @@ export default function HeroSection({ activeBrand }: HeroSectionProps) {
                   }}
                   whileTap={{ scale: 0.97 }}
                 >
-                  Contactanos
+                  Contáctanos
                 </motion.a>
               </motion.div>
 

@@ -14,13 +14,13 @@ const brandColors = {
   solutions: "#1D1D1B",
   projects: "#00A8FF",
   taxlegal: "#F9105E",
-};
+} as const;
 
 const brandLogos = {
   solutions: "/images/logocompleto-horizontal-solutions-20-26-20consulting-color.png",
   projects: "/images/logocompleto-horizontal-projects-color.png",
   taxlegal: "/images/logocompleto-horizontal-tax-20-26-20legal-color.png",
-};
+} as const;
 
 const staggerItem = {
   hidden: { opacity: 0, y: 20 },
@@ -77,8 +77,8 @@ export default function SiteFooter({ activeBrand }: FooterProps) {
               transition={{ duration: 0.5 }}
             />
             <p className="text-sm leading-relaxed text-white/60 max-w-sm">
-              Tres mentes, tres enfoques, un solo proposito. Asesoramiento integral
-              para transformar tu negocio con confianza y excelencia.
+               Nos apasiona entender la cultura de quienes confían en nosotros,
+              brindando una asesoría integral que garantiza seguridad y control en cada decisión
             </p>
 
             {/* Social-like badges */}
@@ -116,9 +116,9 @@ export default function SiteFooter({ activeBrand }: FooterProps) {
             </h4>
             <div className="flex flex-col gap-4">
               {[
-                { icon: Mail, text: "contacto@syn3rgia.com", href: "mailto:contacto@syn3rgia.com" },
-                { icon: Phone, text: "+57 318 123 4567", href: "tel:+573181234567" },
-                { icon: MapPin, text: "Ibague, Tolima, Colombia", href: null },
+                { icon: Mail, text: "taxlegal.syn3rgia@gmail.com", href: "mailto:taxlegal.syn3rgia@gmail.com" },
+                { icon: Phone, text: "+57 3176579037", href: "tel:+573176579037" },
+                { icon: MapPin, text: "BOGOTÁ – IBAGUÉ – EJE CAFETERO", href: null },
               ].map((item, i) => {
                 const Icon = item.icon;
                 const El = item.href ? motion.a : motion.div;
@@ -223,14 +223,14 @@ export default function SiteFooter({ activeBrand }: FooterProps) {
           transition={{ delay: 0.8 }}
         >
           <p className="text-xs text-white/40">
-            {"2026 SYN3RGIA. Todos los derechos reservados."}
+            &copy; 2026 Magnífica PEC. Todos los derechos reservados.
           </p>
           <div className="flex items-center gap-6">
             <a href="#" className="text-xs text-white/40 hover:text-white transition-colors">
               Aviso de Privacidad
             </a>
             <a href="#" className="text-xs text-white/40 hover:text-white transition-colors">
-              Terminos y Condiciones
+              Términos y Condiciones
             </a>
           </div>
         </motion.div>
