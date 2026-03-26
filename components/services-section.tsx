@@ -73,6 +73,7 @@ const servicesContent = {
       },
     ],
   },
+  
   taxlegal: {
     title: "Servicios Jurídicos y Tributarios",
     subtitle:
@@ -354,10 +355,12 @@ export default function ServicesSection({
             {/* ─── PROJECTS / TAX‑LEGAL: service card grid ─── */}
             {!isHome && content && (
               <div
-                className={`grid grid-cols-1 gap-6 ${
-                  content.services.length <= 4
-                    ? "md:grid-cols-2 max-w-5xl mx-auto"
-                    : "md:grid-cols-2 lg:grid-cols-3"
+                className={`grid grid-cols-1 gap-6 mx-auto ${
+                  content.services.length === 3
+                    ? "md:grid-cols-3 max-w-7xl"
+                    : content.services.length <= 4
+                    ? "md:grid-cols-2 max-w-5xl"
+                    : "md:grid-cols-2 lg:grid-cols-3 max-w-7xl"
                 }`}
               >
                 {content.services.map((service, i) => {
