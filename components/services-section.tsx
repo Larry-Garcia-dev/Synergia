@@ -53,12 +53,6 @@ const servicesContent = {
     color: "#00A8FF",
     services: [
       {
-        icon: Building2,
-        title: "Programas Urbanísticos",
-        desc: "Estudios de programas urbanísticos para el desarrollo integral de proyectos de construcción e infraestructura.",
-        image: "/images/pj6.jpeg",
-      },
-      {
         icon: Calculator,
         title: "Presupuestos y Control de Obra",
         desc: "Elaboración de análisis de precios unitarios, presupuestos, programación y control de obra para cada etapa del proyecto.",
@@ -66,26 +60,15 @@ const servicesContent = {
       },
       {
         icon: ClipboardCheck,
-        title: "Licitaciones e Interventoría",
-        desc: "Asesoría en licitaciones, interventoría técnica y administrativa de obras para garantizar cumplimiento y calidad.",
+        title: "Interventoría",
+        desc: "interventoría técnica y administrativa de obras para garantizar cumplimiento y calidad.",
         image: "/images/pj4.jpeg",
       },
-      {
-        icon: TrendingUp,
-        title: "Control de Costos de Obra",
-        desc: "Seguimiento detallado y optimización de costos durante todo el ciclo de vida del proyecto constructivo.",
-        image: "/images/pj3.jpeg",
-      },
-      {
-        icon: Ruler,
-        title: "Diseño Arquitectónico e Interiores",
-        desc: "Diseño arquitectónico y de espacios interiores, diseño de edificaciones, espacios públicos y arquitectura paisajista.",
-        image: "/images/pj2.jpeg",
-      },
+      
       {
         icon: Building2,
-        title: "Supervisión de Obra",
-        desc: "Supervisión técnica y administrativa de obras para garantizar cumplimiento y calidad.",
+        title: "Gerencia de proyectos",
+        desc: "Servicio estratégico que articula y coordina a todos los actores involucrados en la ejecución de una obra civil —propietarios, diseñadores, contratistas, interventores y entidades públicas— para garantizar que el proyecto se desarrolle de manera eficiente, alineada y bajo control.",
         image: "/images/pj1.jpeg",
       },
     ],
